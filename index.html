@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>English Pesalaam – தமிழில் ஆங்கிலம் கற்போம்</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{--or:#FF6B00;--re:#D62E1F;--dk:#080808;--cd:#131313;--c2:#1A1A1A;--c3:#222;--gn:#25D366;--tx:#F0F0EC;--mt:#909090;--nb:#5B9BF5;--pink:#E91E8C;}
+body{font-family:'Poppins',sans-serif;background:var(--dk);color:var(--tx);overflow-x:hidden;line-height:1.7}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--or);border-radius:3px}
+a{text-decoration:none;color:inherit}button{font-family:'Poppins',sans-serif}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:11px 5%;background:rgba(8,8,8,0.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,107,0,0.18);transition:box-shadow .3s}
+.ep-neon{display:inline-flex;align-items:center;background:linear-gradient(160deg,#1E2AA0,#111A70);border:1.5px solid rgba(120,150,255,0.55);border-radius:9px;padding:5px 14px;font-weight:800;font-size:.88rem;letter-spacing:.3px;box-shadow:0 0 18px rgba(80,110,255,0.45),0 0 6px rgba(80,110,255,0.3),inset 0 1px 0 rgba(255,255,255,0.12);position:relative;overflow:hidden;cursor:pointer}
+.ep-neon::before{content:'';position:absolute;top:0;left:0;right:0;height:40%;background:linear-gradient(to bottom,rgba(255,255,255,0.1),transparent);pointer-events:none}
+.ep-neon .en-e{color:#8EC8FF;text-shadow:0 0 10px #8EC8FF,0 0 20px rgba(142,200,255,0.5)}
+.ep-neon .en-p{color:var(--pink);text-shadow:0 0 10px var(--pink),0 0 20px rgba(233,30,140,0.5)}
+.ep-neon .en-r{color:#C5D5FF;text-shadow:0 0 8px rgba(197,213,255,0.7)}
+.nav-links{display:flex;gap:3px;list-style:none}
+.nav-links button{color:var(--mt);font-size:.8rem;font-weight:500;padding:6px 12px;border-radius:8px;transition:.25s;background:none;border:none;cursor:pointer}
+.nav-links button:hover,.nav-links button.cur{color:var(--tx);background:rgba(255,107,0,0.1)}
+.nav-links button.cur{color:var(--or)}
+.hmbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hmbg span{width:22px;height:2px;background:var(--tx);border-radius:2px;display:block}
+.mob-nav{display:none;position:fixed;top:57px;left:0;right:0;background:rgba(8,8,8,0.98);border-bottom:1px solid rgba(255,107,0,.15);padding:14px 5%;flex-direction:column;gap:4px;z-index:999}
+.mob-nav.open{display:flex}
+.mob-nav button{color:var(--mt);font-size:.9rem;font-weight:500;padding:10px 12px;border-radius:8px;transition:.2s;background:none;border:none;cursor:pointer;text-align:left}
+.mob-nav button:hover{background:rgba(255,107,0,.08);color:var(--or)}
+
+/* PAGES */
+.page{display:none;min-height:100vh;padding-top:57px}
+.page.active{display:block}
+
+/* PROGRESS */
+#prog{position:fixed;top:57px;left:0;height:2px;background:linear-gradient(90deg,var(--or),var(--re));z-index:999;width:0;transition:width .1s linear}
+
+/* HERO */
+.hero{min-height:calc(100vh - 57px);display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 5%;position:relative;overflow:hidden;background:radial-gradient(ellipse at 18% 60%,rgba(255,107,0,.1) 0%,transparent 52%),radial-gradient(ellipse at 82% 28%,rgba(214,46,31,.07) 0%,transparent 48%),var(--dk)}
+.hero-bg{position:absolute;font-size:clamp(90px,18vw,220px);font-weight:900;color:rgba(255,107,0,.03);letter-spacing:-10px;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;white-space:nowrap;user-select:none}
+.hero-in{max-width:860px;position:relative;z-index:1}
+.h-eye{display:inline-flex;align-items:center;gap:8px;padding:7px 20px;border-radius:50px;background:rgba(255,107,0,.1);border:1px solid rgba(255,107,0,.3);color:var(--or);font-size:.77rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px}
+.h-eye::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--or);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes logoPulse{0%,100%{box-shadow:0 0 0 4px rgba(255,107,0,0.3),0 0 32px rgba(255,107,0,0.5),0 0 60px rgba(255,107,0,0.2)}50%{box-shadow:0 0 0 8px rgba(255,107,0,0.15),0 0 48px rgba(255,107,0,0.7),0 0 80px rgba(255,107,0,0.3)}}
+h1.hh{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:900;line-height:1.07;letter-spacing:-2px;margin-bottom:18px}
+h1.hh .gr{background:linear-gradient(135deg,var(--or),var(--re),#FF9A00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block}
+.h-sub{font-size:1rem;color:var(--mt);max-width:560px;margin:0 auto 26px;font-weight:300;line-height:1.9}
+.h-sub strong{color:var(--tx);font-weight:600}
+.h-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:.97rem;color:var(--mt);border-left:3px solid var(--or);padding:11px 18px;text-align:left;background:rgba(255,107,0,.05);border-radius:0 10px 10px 0;max-width:500px;margin:0 auto 38px;line-height:1.78}
+.h-btns{display:flex;gap:13px;justify-content:center;flex-wrap:wrap}
+.btn-wa{background:var(--gn);color:#fff;padding:13px 30px;border-radius:50px;font-weight:700;font-size:.93rem;display:inline-flex;align-items:center;gap:9px;box-shadow:0 6px 24px rgba(37,211,102,.4);transition:.3s}
+.btn-wa:hover{transform:translateY(-3px);box-shadow:0 12px 34px rgba(37,211,102,.55)}
+.btn-sec{background:transparent;color:var(--tx);border:2px solid rgba(255,255,255,.18);padding:11px 28px;border-radius:50px;font-weight:600;font-size:.93rem;display:inline-flex;align-items:center;gap:8px;transition:.3s;cursor:pointer}
+.btn-sec:hover{border-color:var(--or);color:var(--or);transform:translateY(-3px)}
+
+/* STATS */
+.stats{background:var(--cd);border-top:1px solid rgba(255,107,0,.12);border-bottom:1px solid rgba(255,107,0,.12);padding:36px 5%}
+.stats-g{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.s-n{font-size:2.4rem;font-weight:900;line-height:1;margin-bottom:5px;background:linear-gradient(135deg,var(--or),#FF9A00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.s-l{color:var(--mt);font-size:.78rem;font-weight:500;letter-spacing:.4px}
+
+/* SECTIONS */
+.sec{padding:76px 5%}
+.sec-in{max-width:1100px;margin:0 auto}
+.s-eye{color:var(--or);font-size:.73rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.s-t{font-size:clamp(1.8rem,3.5vw,2.7rem);font-weight:800;line-height:1.15;margin-bottom:12px;letter-spacing:-1px}
+.s-s{color:var(--mt);font-size:.95rem;max-width:560px;line-height:1.88;font-weight:300}
+.ac{color:var(--or)}
+.bg2{background:var(--cd)}
+
+/* HOW-TO CARDS */
+.hw-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:44px}
+.hw-card{background:var(--c2);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:22px 24px;display:flex;align-items:flex-start;gap:14px;transition:.3s}
+.hw-card:hover{border-color:rgba(255,107,0,.3);transform:translateX(4px);box-shadow:0 6px 28px rgba(0,0,0,.4)}
+.hw-ic{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,var(--or),var(--re));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.hw-t{font-weight:700;font-size:.92rem;margin-bottom:4px}
+.hw-d{color:var(--mt);font-size:.82rem;line-height:1.6;font-weight:300}
+
+/* TOPIC CARDS */
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;margin-top:44px}
+.t-card{background:var(--c2);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:22px 20px;transition:.35s;cursor:pointer;position:relative;overflow:hidden}
+.t-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,107,0,.08),transparent);opacity:0;transition:.35s}
+.t-card:hover::before{opacity:1}
+.t-card:hover{border-color:rgba(255,107,0,.4);transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.5)}
+.t-num{font-size:1.9rem;font-weight:900;color:rgba(255,107,0,.13);line-height:1;margin-bottom:8px}
+.t-ico{font-size:1.5rem;margin-bottom:8px;display:block}
+.t-tt{font-weight:700;font-size:.93rem;margin-bottom:5px}
+.t-dd{color:var(--mt);font-size:.8rem;line-height:1.6;font-weight:300}
+.t-tag{display:inline-block;margin-top:11px;padding:3px 11px;border-radius:50px;background:rgba(255,107,0,.1);color:var(--or);font-size:.69rem;font-weight:700;letter-spacing:.4px}
+.t-arr{position:absolute;bottom:16px;right:16px;color:rgba(255,107,0,.35);font-size:1rem;transition:.3s}
+.t-card:hover .t-arr{color:var(--or);transform:translateX(4px)}
+
+/* LESSON TOP */
+.l-top{background:linear-gradient(135deg,var(--cd),var(--c2));padding:52px 5% 34px;border-bottom:1px solid rgba(255,107,0,.15)}
+.l-top-in{max-width:960px;margin:0 auto}
+.bcrumb{color:var(--mt);font-size:.78rem;margin-bottom:12px;display:flex;align-items:center;gap:5px}
+.bcrumb .bl{color:var(--or);cursor:pointer}
+.bcrumb .bl:hover{text-decoration:underline}
+.l-h{font-size:clamp(1.7rem,4vw,2.6rem);font-weight:800;margin-bottom:9px;letter-spacing:-1px}
+.l-meta{color:var(--mt);font-size:.83rem;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.l-tag{background:rgba(255,107,0,.12);color:var(--or);padding:3px 11px;border-radius:50px;font-size:.73rem;font-weight:600}
+
+/* TABS */
+.ltabs{display:flex;gap:0;background:var(--cd);border-bottom:1px solid rgba(255,255,255,.07);overflow-x:auto;scrollbar-width:none}
+.ltabs::-webkit-scrollbar{display:none}
+.ltab{padding:13px 20px;color:var(--mt);font-size:.83rem;font-weight:500;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:.25s;flex-shrink:0;background:none;border-top:none;border-left:none;border-right:none;font-family:'Poppins',sans-serif}
+.ltab:hover{color:var(--tx)}
+.ltab.on{color:var(--or);border-bottom-color:var(--or)}
+.tpanel{display:none}.tpanel.on{display:block}
+
+/* LESSON BODY */
+.l-body{max-width:960px;margin:0 auto;padding:36px 5%}
+.ls{margin-bottom:40px}
+.ls-h{font-size:1.2rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.ls-h::before{content:'';width:4px;height:22px;background:linear-gradient(var(--or),var(--re));border-radius:2px;flex-shrink:0}
+
+/* EXAMPLE BOXES */
+.ex{background:var(--c2);border-left:4px solid var(--or);border-radius:0 12px 12px 0;padding:16px 20px;margin-bottom:12px;transition:.25s}
+.ex:hover{background:var(--c3);box-shadow:0 4px 18px rgba(0,0,0,.3)}
+.ex-ta{color:var(--or);font-weight:600;font-size:.92rem;margin-bottom:3px}
+.ex-en{color:var(--nb);font-weight:600;font-size:.92rem;margin-bottom:5px}
+.ex-note{color:var(--mt);font-size:.77rem;font-style:italic}
+
+/* 3D AUDIO BUTTON */
+.abtn{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(160deg,#1E2AA0 0%,#111A70 100%);border:1.5px solid rgba(120,150,255,0.5);border-radius:9px;padding:7px 15px;color:#C5D5FF;font-size:.8rem;font-weight:600;cursor:pointer;transition:.3s;box-shadow:0 0 14px rgba(80,110,255,.4),0 4px 12px rgba(26,35,126,.5),inset 0 1px 0 rgba(255,255,255,.15),inset 0 -2px 0 rgba(0,0,0,.3);position:relative;overflow:hidden;margin-top:7px;font-family:'Poppins',sans-serif}
+.abtn::before{content:'';position:absolute;top:0;left:0;right:0;height:45%;background:linear-gradient(to bottom,rgba(255,255,255,.12),transparent);pointer-events:none;border-radius:9px 9px 0 0}
+.abtn:hover{transform:translateY(-2px);box-shadow:0 0 20px rgba(80,110,255,.6),0 8px 20px rgba(26,35,126,.6),inset 0 1px 0 rgba(255,255,255,.2),inset 0 -2px 0 rgba(0,0,0,.3);background:linear-gradient(160deg,#2535B8 0%,#1520A0 100%)}
+.abtn:active{transform:translateY(1px)}
+
+/* SENTENCE PATTERN TABLE */
+.sp{margin-top:28px;background:var(--c2);border-radius:14px;border:1px solid rgba(255,255,255,.06);overflow:hidden}
+.sp-hd{display:grid;grid-template-columns:1fr 1fr 1fr;background:linear-gradient(135deg,var(--or),var(--re))}
+.sp-hd div{padding:13px 18px;font-weight:700;font-size:.78rem;letter-spacing:.5px;text-transform:uppercase;color:#fff}
+.sp-r{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,.05);transition:.2s}
+.sp-r:last-child{border-bottom:none}
+.sp-r:hover{background:rgba(255,107,0,.05)}
+.sp-r div{padding:14px 18px;font-size:.86rem}
+.sp-ta{color:var(--or);font-weight:600}
+.sp-en{color:var(--nb);font-weight:600}
+.sp-no{color:var(--mt);font-size:.78rem}
+
+/* VOCAB GRID */
+.v-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px}
+.vc{background:var(--c2);border:1px solid rgba(255,255,255,.06);border-radius:13px;padding:18px 14px;text-align:center;transition:.3s;position:relative;overflow:hidden}
+.vc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--or),var(--re));transform:scaleX(0);transform-origin:left;transition:.35s}
+.vc:hover::after{transform:scaleX(1)}
+.vc:hover{transform:translateY(-6px);box-shadow:0 18px 38px rgba(0,0,0,.5);border-color:rgba(255,107,0,.18)}
+.v-ta{font-size:1rem;font-weight:700;margin-bottom:4px}
+.v-en{font-size:.88rem;color:var(--or);font-weight:600;margin-bottom:7px}
+.v-alts{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-bottom:7px}
+.v-alt{padding:2px 8px;background:rgba(255,107,0,.1);color:var(--or);border-radius:50px;font-size:.67rem;font-weight:600;border:1px solid rgba(255,107,0,.2)}
+.v-ex{font-size:.74rem;color:var(--mt);font-style:italic;line-height:1.5}
+
+/* TIP BOX */
+.tip{background:rgba(255,107,0,.07);border:1px solid rgba(255,107,0,.2);border-radius:11px;padding:16px 20px;margin-top:22px;display:flex;gap:11px;align-items:flex-start}
+.tip-tx{color:var(--tx);font-size:.85rem;line-height:1.7;font-weight:300}
+.tip-tx strong{color:var(--or);font-weight:600}
+
+/* PRACTICE */
+.pr-area{background:var(--c3);border:1px solid rgba(255,255,255,.1);border-radius:11px;padding:14px;margin-top:10px}
+.pr-area input{width:100%;background:transparent;border:none;color:var(--tx);font-size:.9rem;font-family:'Poppins',sans-serif;outline:none}
+.pr-area input::placeholder{color:var(--mt)}
+.ck-btn{background:linear-gradient(135deg,var(--or),var(--re));color:#fff;border:none;cursor:pointer;padding:9px 20px;border-radius:8px;font-weight:600;font-size:.84rem;margin-top:9px;transition:.3s;font-family:'Poppins',sans-serif;display:inline-flex;align-items:center;gap:7px}
+.ck-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(255,107,0,.4)}
+.ans{display:none;margin-top:10px;padding:12px 16px;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.2);border-radius:9px;font-size:.84rem;color:var(--tx)}
+.ans.show{display:block}
+
+/* WA SECTION */
+.wa-sec{padding:76px 5%;background:radial-gradient(ellipse at center,rgba(37,211,102,.07) 0%,transparent 65%),var(--dk)}
+.wa-in{max-width:640px;margin:0 auto;text-align:center}
+.wa-3d{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(160deg,#2ECC71,#25A244);color:#fff;padding:18px 36px;border-radius:16px;font-weight:800;font-size:1.05rem;text-decoration:none;margin-top:36px;border:1.5px solid rgba(255,255,255,.2);box-shadow:0 0 0 3px rgba(37,211,102,.2),0 8px 0 #1A7A32,0 12px 28px rgba(37,211,102,.4),inset 0 1px 0 rgba(255,255,255,.25),inset 0 -1px 0 rgba(0,0,0,.15);transition:.3s;position:relative;overflow:hidden}
+.wa-3d::before{content:'';position:absolute;top:0;left:0;right:0;height:45%;background:linear-gradient(to bottom,rgba(255,255,255,.18),transparent);pointer-events:none}
+.wa-3d:hover{transform:translateY(-4px);box-shadow:0 0 0 3px rgba(37,211,102,.3),0 12px 0 #1A7A32,0 18px 36px rgba(37,211,102,.5),inset 0 1px 0 rgba(255,255,255,.25),inset 0 -1px 0 rgba(0,0,0,.15)}
+.wa-3d:active{transform:translateY(2px);box-shadow:0 0 0 3px rgba(37,211,102,.2),0 4px 0 #1A7A32,0 6px 14px rgba(37,211,102,.3),inset 0 1px 0 rgba(255,255,255,.25)}
+.wa-nb{text-align:left}
+.wa-nb .wl{font-size:.72rem;opacity:.8;letter-spacing:.5px;margin-bottom:2px}
+.wa-nb .wn{font-size:1.1rem;font-weight:900}
+.wa-note{color:var(--mt);font-size:.8rem;margin-top:18px;font-weight:300}
+
+/* FLOAT WA */
+.fwa{position:fixed;bottom:24px;right:24px;z-index:996;width:56px;height:56px;border-radius:50%;background:var(--gn);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 0 rgba(37,211,102,.5),0 6px 22px rgba(37,211,102,.45);text-decoration:none;color:#fff;animation:wap 2.5s ease-in-out infinite}
+.fwa:hover{transform:scale(1.1)!important;animation:none;box-shadow:0 8px 30px rgba(37,211,102,.6)}
+@keyframes wap{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5),0 6px 22px rgba(37,211,102,.45)}70%{box-shadow:0 0 0 13px rgba(37,211,102,0),0 6px 22px rgba(37,211,102,.45)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0),0 6px 22px rgba(37,211,102,.45)}}
+.fwa-tip{position:absolute;right:64px;top:50%;transform:translateY(-50%);background:var(--c2);color:var(--tx);font-size:.73rem;font-weight:600;padding:6px 12px;border-radius:7px;white-space:nowrap;border:1px solid rgba(37,211,102,.25);opacity:0;pointer-events:none;transition:.3s}
+.fwa:hover .fwa-tip{opacity:1}
+
+/* FOOTER */
+footer{background:var(--cd);border-top:1px solid rgba(255,255,255,.06);padding:50px 5% 22px}
+.ft-g{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:36px}
+.ft-desc{color:var(--mt);font-size:.81rem;line-height:1.88;font-weight:300;max-width:270px;margin-top:12px}
+.ft-tag{margin-top:12px;font-size:.77rem;color:var(--or);font-style:italic;font-weight:500}
+.ft-col h4{font-size:.77rem;font-weight:700;margin-bottom:13px;letter-spacing:.5px;text-transform:uppercase}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ft-col button{color:var(--mt);font-size:.81rem;font-weight:300;transition:.3s;cursor:pointer;background:none;border:none;font-family:'Poppins',sans-serif;text-align:left;padding:0}
+.ft-col button:hover,.ft-col a:hover{color:var(--or);padding-left:4px}
+.ft-col a{color:var(--mt);font-size:.81rem;font-weight:300;transition:.3s;display:block}
+.ft-btm{border-top:1px solid rgba(255,255,255,.06);padding-top:18px;max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:.77rem;color:var(--mt);flex-wrap:wrap;gap:9px}
+.ft-btm a{color:var(--or)}
+
+/* FADE IN */
+.fi{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.fi.vis{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .nav-links{display:none}.hmbg{display:flex}
+  .t-grid{grid-template-columns:repeat(2,1fr)}
+  .v-grid{grid-template-columns:repeat(2,1fr)}
+  .hw-grid{grid-template-columns:1fr}
+  .stats-g{grid-template-columns:repeat(2,1fr)}
+  .ft-g{grid-template-columns:1fr;gap:28px}
+  .sp-hd,.sp-r{grid-template-columns:1fr 1fr}
+  div[style*="grid-template-columns:1fr 1fr;gap:48px"]{grid-template-columns:1fr!important}
+  .sp-hd div:last-child,.sp-r div:last-child{display:none}
+}
+@media(max-width:600px){
+  .t-grid{grid-template-columns:1fr}
+  .v-grid{grid-template-columns:1fr}
+  .ft-btm{flex-direction:column;text-align:center}
+  .wa-3d{padding:15px 22px;font-size:.93rem}
+}
+</style>
+</head>
+<body>
+
+<!-- FLOAT WA -->
+<a href="https://wa.me/919489253293" class="fwa" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <div class="fwa-tip">WhatsApp-ல் தொடர்பு கொள்ளுங்கள்</div>
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<div id="prog"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div style="display:flex;align-items:center;gap:10px;cursor:pointer" onclick="showPage('home')">
+    <img src="images/logo.png" alt="English Pesalaam Logo" style="width:42px;height:42px;border-radius:50%;object-fit:cover;box-shadow:0 0 14px rgba(255,107,0,0.5)"/>
+    <div class="ep-neon" style="cursor:default">
+      <span class="en-e">E</span><span class="en-r">nglish </span><span class="en-p">P</span><span class="en-r">esalaam</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><button onclick="showPage('home')" id="n-home" class="cur">முகப்பு</button></li>
+    <li><button onclick="showPage('basic')" id="n-basic">அடிப்படை</button></li>
+    <li><button onclick="showPage('sentence')" id="n-sentence">வாக்கிய அமைப்பு</button></li>
+    <li><button onclick="showPage('vocab')" id="n-vocab">சொல் களஞ்சியம்</button></li>
+    <li><button onclick="showPage('spoken')" id="n-spoken">பேசும் ஆங்கிலம்</button></li>
+    <li><button onclick="showPage('grammar')" id="n-grammar">இலக்கணம்</button></li>
+  </ul>
+  <button class="hmbg" onclick="toggleMob()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-nav" id="mobnav">
+  <button onclick="showPage('home');closeMob()">முகப்பு</button>
+  <button onclick="showPage('basic');closeMob()">அடிப்படை பாடங்கள்</button>
+  <button onclick="showPage('sentence');closeMob()">வாக்கிய அமைப்பு</button>
+  <button onclick="showPage('vocab');closeMob()">சொல் களஞ்சியம்</button>
+  <button onclick="showPage('spoken');closeMob()">பேசும் ஆங்கிலம்</button>
+  <button onclick="showPage('grammar');closeMob()">இலக்கணம்</button>
+</div>
+
+<!-- ══ HOME PAGE ══ -->
+<div class="page active" id="page-home">
+<div class="hero">
+  <div class="hero-bg">ENGLISH</div>
+  <div class="hero-in">
+    <div class="h-eye">தமிழ் வழி ஆங்கிலம் &middot; உங்கள் வேகத்தில் கற்கலாம்</div>
+    <div style="margin:0 auto 22px;display:flex;justify-content:center">
+      <img src="images/logo.png" alt="English Pesalaam" style="width:110px;height:110px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 4px rgba(255,107,0,0.3),0 0 32px rgba(255,107,0,0.5),0 0 60px rgba(255,107,0,0.2);animation:logoPulse 3s ease-in-out infinite"/>
+    </div>
+    <h1 class="hh">தமிழில் கற்று<br/><span class="gr">ஆங்கிலம் பேசுவோம்!</span></h1>
+    <p class="h-sub"><strong>நேர வரம்பு இல்லை. காலக்கெடு இல்லை. அழுத்தம் இல்லை.</strong><br/>தமிழ் மொழி பின்னணி உடையவர்களுக்காகவே உருவாக்கப்பட்ட தளம். தினமும் வாக்கியங்கள், அமைப்புகள் மற்றும் நடைமுறை பயிற்சி மூலம் உண்மையான ஆங்கில தொடர்பு திறனை வளர்த்துக்கொள்ளுங்கள்.</p>
+    <blockquote class="h-quote">"நம்முடைய திறமையை மேம்படுத்த — நாம், நமக்காக, நமக்கென்று எடுக்கின்ற முயற்சி" &#127881;&#128591;</blockquote>
+    <div class="h-btns">
+      <a href="https://wa.me/919489253293" class="btn-wa" target="_blank" rel="noopener">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp-ல் இணையுங்கள்
+      </a>
+      <button class="btn-sec" onclick="showPage('basic')">பாடங்களை காணுங்கள் &#8594;</button>
+    </div>
+  </div>
+</div>
+<div class="stats">
+  <div class="stats-g">
+    <div><div class="s-n">500+</div><div class="s-l">வாக்கிய அமைப்புகள்</div></div>
+    <div><div class="s-n">100%</div><div class="s-l">தமிழ் வழி விளக்கம்</div></div>
+    <div><div class="s-n">இலவசம்</div><div class="s-l">சேர கட்டணம் இல்லை</div></div>
+    <div><div class="s-n">&#8734;</div><div class="s-l">நேர வரம்பு இல்லை</div></div>
+  </div>
+</div>
+<div class="sec bg2">
+  <div class="sec-in">
+    <p class="s-eye">இந்த தளத்தை எப்படி பயன்படுத்துவது</p>
+    <h2 class="s-t">தொடங்குவது எப்படி?<br/><span class="ac">எளிமையான 4 படிகள்</span></h2>
+    <p class="s-s">App தேவையில்லை. Signup தேவையில்லை. தமிழில் படிக்கலாம், ஆங்கிலத்தில் பேசலாம்.</p>
+    <div class="hw-grid">
+      <div class="hw-card fi"><div class="hw-ic">&#128218;</div><div><div class="hw-t">படிப்பை தேர்ந்தெடுங்கள்</div><div class="hw-d">மேலே உள்ள menu-ல் இருந்து உங்களுக்கு தேவையான பாடத்தை கிளிக் செய்யுங்கள். அடிப்படை, வாக்கியம், சொல்வளம் என பல பிரிவுகள் உள்ளன.</div></div></div>
+      <div class="hw-card fi"><div class="hw-ic">&#128064;</div><div><div class="hw-t">தமிழில் புரிந்துகொள்ளுங்கள்</div><div class="hw-d">ஒவ்வொரு பாடமும் தமிழில் விளக்கப்பட்டுள்ளது. முதலில் தமிழ் வாக்கியத்தை படியுங்கள், பிறகு ஆங்கில மொழிபெயர்ப்பை பாருங்கள்.</div></div></div>
+      <div class="hw-card fi"><div class="hw-ic">&#128266;</div><div><div class="hw-t">Audio கேளுங்கள், திரும்ப சொல்லுங்கள்</div><div class="hw-d">ஒவ்வொரு வாக்கியத்திலும் Audio Button உள்ளது. கிளிக் செய்து சரியான உச்சரிப்பை கேளுங்கள், பிறகு நீங்களும் சொல்லிப் பாருங்கள்.</div></div></div>
+      <div class="hw-card fi"><div class="hw-ic">&#9997;&#65039;</div><div><div class="hw-t">பயிற்சி செய்யுங்கள்</div><div class="hw-d">ஒவ்வொரு பாடத்திலும் Practice பகுதி உள்ளது. அங்கே உங்கள் பதிலை தட்டச்சு செய்து "சரிபார்க்கவும்" என்பதை அழுத்துங்கள்.</div></div></div>
+    </div>
+  </div>
+</div>
+<div class="sec">
+  <div class="sec-in">
+    <p class="s-eye">அனைத்து பாடங்களும்</p>
+    <h2 class="s-t">நீங்கள் என்ன<br/><span class="ac">கற்றுக்கொள்வீர்கள்?</span></h2>
+    <p class="s-s">ஒவ்வொரு பாடமும் தமிழ் நடைமுறை வாழ்க்கையிலிருந்து எடுக்கப்பட்ட உண்மையான சூழல்களை அடிப்படையாகக் கொண்டது.</p>
+    <div class="t-grid">
+      <div class="t-card fi" onclick="showPage('basic')"><div class="t-num">01</div><span class="t-ico">&#127749;</span><div class="t-tt">அடிப்படை ஆங்கிலம்</div><div class="t-dd">வணக்கம் சொல்வது, அறிமுகம், எண்கள், நிறங்கள், குடும்பம் — அன்றாட வாழ்வில் பயன்படும் எளிய வாக்கியங்கள்.</div><div class="t-tag">தொடக்க நிலை</div><div class="t-arr">&#8594;</div></div>
+      <div class="t-card fi" onclick="showPage('sentence')"><div class="t-num">02</div><span class="t-ico">&#127959;&#65039;</span><div class="t-tt">வாக்கிய அமைப்பு</div><div class="t-dd">ஒரு அமைப்பை கற்றால் நூறு வாக்கியங்கள் பேசலாம். Present, Past, Future — அனைத்தும் தமிழில்.</div><div class="t-tag">முக்கிய பாடம்</div><div class="t-arr">&#8594;</div></div>
+      <div class="t-card fi" onclick="showPage('vocab')"><div class="t-num">03</div><span class="t-ico">&#128214;</span><div class="t-tt">சொல் களஞ்சியம்</div><div class="t-dd">சொல் பட்டியல் மட்டுமல்ல — ஒவ்வொரு சொல்லுக்கும் மாற்று வாக்கியங்கள். தமிழ் சூழலில் ஆங்கிலம் கற்போம்.</div><div class="t-tag">சொல்வளம்</div><div class="t-arr">&#8594;</div></div>
+      <div class="t-card fi" onclick="showPage('spoken')"><div class="t-num">04</div><span class="t-ico">&#127908;</span><div class="t-tt">பேசும் ஆங்கிலம்</div><div class="t-dd">கடை, அலுவலகம், தொலைபேசி, Interview — நடைமுறை சூழல்களில் ஆங்கிலத்தில் பேசக் கற்போம்.</div><div class="t-tag">நடைமுறை பேச்சு</div><div class="t-arr">&#8594;</div></div>
+      <div class="t-card fi" onclick="showPage('grammar')"><div class="t-num">05</div><span class="t-ico">&#128208;</span><div class="t-tt">இலக்கணம் — தமிழில்</div><div class="t-dd">Tense, Article, Preposition — அனைத்தும் தமிழ் உதாரணங்களுடன். பாடப்புத்தக விதிகள் இல்லை.</div><div class="t-tag">தமிழ் விளக்கம்</div><div class="t-arr">&#8594;</div></div>
+      <div class="t-card fi" onclick="showPage('spoken')"><div class="t-num">06</div><span class="t-ico">&#128188;</span><div class="t-tt">தொழில் ஆங்கிலம்</div><div class="t-dd">Email எழுதுவது, Meeting பேசுவது, Interview — வேலைத்தளத்தில் தேவையான ஆங்கிலம்.</div><div class="t-tag">Career வளர்ச்சி</div><div class="t-arr">&#8594;</div></div>
+    </div>
+  </div>
+</div>
+<div class="sec bg2">
+  <div class="sec-in">
+    <p class="s-eye">நமது கற்பிக்கும் முறை</p>
+    <h2 class="s-t">3 படிகளில்<br/><span class="ac">ஆங்கிலம் கற்போம்</span></h2>
+    <div class="hw-grid">
+      <div class="hw-card fi"><div class="hw-ic">1&#65039;&#8419;</div><div><div class="hw-t">தமிழ் வாக்கியத்தில் தொடங்கு</div><div class="hw-d">நீங்கள் ஏற்கனவே அறிந்த தமிழ் வாக்கியத்தில் இருந்து தொடங்குகிறோம்.<div style="margin-top:9px;padding:10px 14px;background:rgba(0,0,0,.3);border-left:3px solid var(--or);border-radius:0 8px 8px 0;font-size:.8rem;color:var(--or);font-weight:600">நான் கடைக்கு சென்றேன், ஆனால் கடை மூடியிருந்தது.</div></div></div></div>
+      <div class="hw-card fi"><div class="hw-ic">2&#65039;&#8419;</div><div><div class="hw-t">ஆங்கில அமைப்பை புரிந்துகொள்</div><div class="hw-d">நேரடி மொழிபெயர்ப்பு + அமைப்பு விளக்கம் தமிழில்.<div style="margin-top:9px;padding:10px 14px;background:rgba(0,0,0,.3);border-left:3px solid var(--nb);border-radius:0 8px 8px 0;font-size:.8rem;color:var(--nb);font-weight:600">I went to the shop, but it was closed.</div></div></div></div>
+      <div class="hw-card fi"><div class="hw-ic">3&#65039;&#8419;</div><div><div class="hw-t">2 வார்த்தை மாற்று — புதிய வாக்கியம்!</div><div class="hw-d">அதே அமைப்பில் வார்த்தை மட்டும் மாற்றி எத்தனை வேண்டுமானாலும் பேசலாம்.<div style="margin-top:9px;padding:10px 14px;background:rgba(0,0,0,.3);border-left:3px solid var(--gn);border-radius:0 8px 8px 0;font-size:.8rem;color:#6EE76E;font-weight:600">I went to the bank, but it was a holiday.</div></div></div></div>
+      <div class="hw-card fi"><div class="hw-ic">&#128266;</div><div><div class="hw-t">கேளுங்கள், சொல்லுங்கள், மீண்டும் சொல்லுங்கள்</div><div class="hw-d">Audio கேட்டு, நீங்களும் சொல்லிப் பாருங்கள். தினமும் 5 நிமிடம் மட்டுமே போதும் — திரும்பத் திரும்ப சொல்வதே திறமை வளர்க்கும்.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MOTIVATIONAL POSTER SECTION -->
+<div style="padding:60px 5%;background:var(--dk)">
+  <div style="max-width:1100px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+      <div>
+        <p style="color:var(--or);font-size:.73rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">நமது உந்துதல்</p>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;line-height:1.2;margin-bottom:16px;letter-spacing:-1px">கல்விக்கு நேரம் கொடுங்கள்...<br/><span style="color:var(--or)">கல்வி உங்கள் நேரத்தை மாற்றும்!</span></h2>
+        <p style="color:var(--mt);font-size:.95rem;line-height:1.88;font-weight:300;margin-bottom:20px">ஒவ்வொரு நாளும் சிறிது சிறிதாக கற்பதே பெரிய வெற்றியின் தொடக்கம். நேர வரம்பு இல்லை — உங்கள் வேகத்தில், உங்கள் நேரத்தில் கற்கலாம்.</p>
+        <blockquote style="font-family:'Playfair Display',serif;font-style:italic;font-size:.97rem;color:var(--mt);border-left:3px solid var(--or);padding:11px 18px;background:rgba(255,107,0,.05);border-radius:0 10px 10px 0;line-height:1.75">"Give Time To Education... Education Will Change Your Time." &#128522;</blockquote>
+        <div style="margin-top:24px;display:flex;gap:28px;flex-wrap:wrap">
+          <div style="text-align:center"><div style="font-size:1.1rem;font-weight:800;color:var(--or)">நேர வரம்பு</div><div style="color:var(--mt);font-size:.78rem;margin-top:3px">இல்லை &#10005;</div></div>
+          <div style="text-align:center"><div style="font-size:1.1rem;font-weight:800;color:var(--or)">காலக்கெடு</div><div style="color:var(--mt);font-size:.78rem;margin-top:3px">இல்லை &#10005;</div></div>
+          <div style="text-align:center"><div style="font-size:1.1rem;font-weight:800;color:var(--or)">அழுத்தம்</div><div style="color:var(--mt);font-size:.78rem;margin-top:3px">இல்லை &#10005;</div></div>
+        </div>
+      </div>
+      <div style="position:relative">
+        <img src="images/poster.png" alt="Give Time To Education - English Pesalaam" style="width:100%;max-height:500px;object-fit:cover;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,0.7);display:block"/>
+        <div style="position:absolute;bottom:16px;left:16px;right:16px;background:rgba(0,0,0,0.72);backdrop-filter:blur(10px);border-radius:10px;padding:12px 16px;border:1px solid rgba(255,107,0,0.22)">
+          <div style="font-size:.72rem;color:var(--mt);margin-bottom:3px">WhatsApp-ல் இணையுங்கள்</div>
+          <a href="https://wa.me/919489253293" style="color:#25D366;font-weight:700;font-size:.95rem;text-decoration:none">&#128222; +91 9489 253 293</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wa-sec">
+  <div class="wa-in">
+    <p class="s-eye" style="text-align:center">இப்போதே தொடங்குங்கள்</p>
+    <h2 class="s-t" style="text-align:center">ஒரு Message மட்டுமே<br/><span class="ac">போதும்!</span></h2>
+    <p class="s-s" style="max-width:440px;margin:0 auto;text-align:center">App தேவையில்லை. Registration இல்லை. WhatsApp-ல் "வணக்கம்" என்று மட்டும் அனுப்புங்கள் — நாங்கள் உங்களுக்கு வழிகாட்டுவோம்.</p>
+    <div style="display:flex;justify-content:center">
+      <a href="https://wa.me/919489253293" class="wa-3d" target="_blank" rel="noopener">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <div class="wa-nb"><div class="wl">WHATSAPP</div><div class="wn">+91 9489 253 293</div></div>
+      </a>
+    </div>
+    <p class="wa-note">இலவசம் &middot; தமிழில் உதவி &middot; நேர்மையான கற்பித்தல்</p>
+  </div>
+</div>
+<footer>
+  <div class="ft-g">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+        <img src="images/logo.png" alt="English Pesalaam" style="width:36px;height:36px;border-radius:50%;object-fit:cover;box-shadow:0 0 12px rgba(255,107,0,0.4)"/>
+        <div class="ep-neon" style="font-size:.82rem;padding:4px 12px;cursor:default"><span class="en-e">E</span><span class="en-r">nglish </span><span class="en-p">P</span><span class="en-r">esalaam</span></div>
+      </div>
+      <p class="ft-desc">தமிழ் மொழி மூலம் ஆங்கிலம் கற்க உருவாக்கப்பட்ட தளம். நேர வரம்பு இல்லை. காலக்கெடு இல்லை. அழுத்தம் இல்லை.</p>
+      <p class="ft-tag">"நாம், நமக்காக, நமக்கென்று எடுக்கின்ற முயற்சி" &#128591;</p>
+    </div>
+    <div class="ft-col"><h4>பாடங்கள்</h4><ul>
+      <li><button onclick="showPage('basic')">அடிப்படை ஆங்கிலம்</button></li>
+      <li><button onclick="showPage('sentence')">வாக்கிய அமைப்பு</button></li>
+      <li><button onclick="showPage('vocab')">சொல் களஞ்சியம்</button></li>
+      <li><button onclick="showPage('spoken')">பேசும் ஆங்கிலம்</button></li>
+      <li><button onclick="showPage('grammar')">இலக்கணம்</button></li>
+    </ul></div>
+    <div class="ft-col"><h4>தொடர்பு</h4><ul>
+      <li><a href="https://wa.me/919489253293" target="_blank">WhatsApp: +91 9489 253 293</a></li>
+      <li><button onclick="showPage('home')">முகப்பு</button></li>
+    </ul></div>
+  </div>
+  <div class="ft-btm">
+    <span>&copy; 2025 English Pesalaam &middot; அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை</span>
+    <span>தமிழர்களுக்காக உருவாக்கப்பட்டது &middot; <a href="https://wa.me/919489253293" target="_blank">+91 9489 253 293</a></span>
+  </div>
+</footer>
+</div>
+
+<!-- ══ BASIC ENGLISH PAGE ══ -->
+<div class="page" id="page-basic">
+<div class="l-top"><div class="l-top-in">
+  <div class="bcrumb"><span class="bl" onclick="showPage('home')">முகப்பு</span> &rsaquo; <span>அடிப்படை ஆங்கிலம்</span></div>
+  <h2 class="l-h">அடிப்படை ஆங்கிலம் — Basic English</h2>
+  <div class="l-meta"><span class="l-tag">தொடக்க நிலை</span><span>6 பாடங்கள்</span><span>தமிழில் விளக்கம்</span></div>
+</div></div>
+<div class="ltabs">
+  <button class="ltab on" onclick="showTab(this,'b1')">வணக்கம் &amp; அறிமுகம்</button>
+  <button class="ltab" onclick="showTab(this,'b2')">எண்கள் &amp; நேரம்</button>
+  <button class="ltab" onclick="showTab(this,'b3')">குடும்பம்</button>
+  <button class="ltab" onclick="showTab(this,'b4')">நிறங்கள்</button>
+  <button class="ltab" onclick="showTab(this,'b5')">உணவு &amp; கடை</button>
+  <button class="ltab" onclick="showTab(this,'b6')">வழி கேட்பது</button>
+</div>
+<div class="tpanel on" id="b1"><div class="l-body">
+  <div class="ls"><div class="ls-h">வணக்கம் சொல்வது எப்படி?</div>
+    <p style="color:var(--mt);font-size:.87rem;margin-bottom:18px;font-weight:300">தமிழில் நாம் "வணக்கம்" என்று சொல்கிறோம். ஆங்கிலத்தில் நேரத்தை பொறுத்து மாறுகிறது — ஆனால் "Hello" சொன்னாலும் யாரும் தவறு சொல்லமாட்டார்கள்!</p>
+    <div class="ex fi"><div class="ex-ta">காலையில் சந்திக்கும்போது &#8594;</div><div class="ex-en">Good morning! How are you?</div><div class="ex-note">காலை நேரம் (6am–12pm)</div><button class="abtn" onclick="speak('Good morning! How are you?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-ta">மதியம் சந்திக்கும்போது &#8594;</div><div class="ex-en">Good afternoon! Everything okay?</div><div class="ex-note">மதிய நேரம் (12pm–6pm)</div><button class="abtn" onclick="speak('Good afternoon! Everything okay?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-ta">மாலை / இரவு சந்திக்கும்போது &#8594;</div><div class="ex-en">Good evening! Had a long day?</div><div class="ex-note">மாலை நேரம் (6pm+)</div><button class="abtn" onclick="speak('Good evening! Had a long day?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-ta">எந்த நேரமும் &#8594;</div><div class="ex-en">Hi! Nice to meet you.</div><div class="ex-note">எப்போது வேண்டுமானாலும்</div><button class="abtn" onclick="speak('Hi! Nice to meet you.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="tip"><span style="font-size:1.2rem">&#128161;</span><div class="tip-tx"><strong>நினைவில் வையுங்கள்:</strong> "How are you?" என்று கேட்டால் "I am fine, thank you! And you?" என்று சொல்வது மிகவும் இயல்பானது.</div></div>
+  </div>
+  <div class="ls"><div class="ls-h">உங்களை அறிமுகப்படுத்திக்கொள்வது</div>
+    <div class="ex fi"><div class="ex-ta">என் பெயர் முரளி, நான் மதுரையில் இருக்கிறேன் &#8594;</div><div class="ex-en">My name is Murali. I live in Madurai.</div><button class="abtn" onclick="speak('My name is Murali. I live in Madurai.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-ta">நான் ஒரு ஆசிரியர் &#8594;</div><div class="ex-en">I am a teacher. I work at a school here.</div><button class="abtn" onclick="speak('I am a teacher. I work at a school here.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-ta">பழகினால் மகிழ்ச்சி &#8594;</div><div class="ex-en">It is very nice to meet you. I hope we talk more.</div><button class="abtn" onclick="speak('It is very nice to meet you. I hope we talk more.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+  </div>
+  <div class="ls"><div class="ls-h">&#127919; பயிற்சி செய்யுங்கள்</div>
+    <p style="color:var(--mt);font-size:.85rem;margin-bottom:12px">"என் பெயர் ___, நான் ___ இல் வசிக்கிறேன்" — இதை ஆங்கிலத்தில் எழுதுங்கள்.</p>
+    <div class="pr-area"><input type="text" id="pr-b1" placeholder="My name is ___, I live in ___..."/></div>
+    <button class="ck-btn" onclick="showAns('a-b1')">&#10003; விடையை காணுங்கள்</button>
+    <div class="ans" id="a-b1">&#9989; <strong>உதாரணம்:</strong> "My name is Kavitha. I live in Coimbatore. I am happy to meet you!"</div>
+  </div>
+</div></div>
+<div class="tpanel" id="b2"><div class="l-body">
+  <div class="ls"><div class="ls-h">எண்கள் — Numbers</div>
+    <div class="v-grid">
+      <div class="vc fi"><div class="v-ta">ஒன்று</div><div class="v-en">One (1)</div><button class="abtn" style="font-size:.7rem;padding:5px 10px" onclick="speak('One')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">இரண்டு</div><div class="v-en">Two (2)</div><button class="abtn" style="font-size:.7rem;padding:5px 10px" onclick="speak('Two')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">மூன்று</div><div class="v-en">Three (3)</div><button class="abtn" style="font-size:.7rem;padding:5px 10px" onclick="speak('Three')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">நான்கு</div><div class="v-en">Four (4)</div><button class="abtn" style="font-size:.7rem;padding:5px 10px" onclick="speak('Four')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">ஐந்து</div><div class="v-en">Five (5)</div><button class="abtn" style="font-size:.7rem;padding:5px 10px" onclick="speak('Five')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">பத்து</div><div class="v-en">Ten (10)</div><button class="abtn" style="font-size:.7rem;padding:5px 10px" onclick="speak('Ten')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">இருபது</div><div class="v-en">Twenty (20)</div><button class="abtn" style="font-size:.7rem;padding:5px 10px" onclick="speak('Twenty')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">நூறு</div><div class="v-en">Hundred (100)</div><button class="abtn" style="font-size:.7rem;padding:5px 10px" onclick="speak('Hundred')">&#128266;</button></div>
+    </div>
+  </div>
+  <div class="ls"><div class="ls-h">நேரம் கேட்பது</div>
+    <div class="ex fi"><div class="ex-ta">இப்போது மணி என்ன? &#8594;</div><div class="ex-en">What time is it now?</div><button class="abtn" onclick="speak('What time is it now?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-ta">இப்போது 3 மணி ஆகிறது &#8594;</div><div class="ex-en">It is three o'clock right now.</div><button class="abtn" onclick="speak('It is three o clock right now.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-ta">கடை 9 மணிக்கு திறக்கும் &#8594;</div><div class="ex-en">The shop opens at nine in the morning.</div><button class="abtn" onclick="speak('The shop opens at nine in the morning.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+  </div>
+</div></div>
+<div class="tpanel" id="b3"><div class="l-body">
+  <div class="ls"><div class="ls-h">குடும்ப உறுப்பினர்கள் — Family</div>
+    <div class="v-grid">
+      <div class="vc fi"><div class="v-ta">அம்மா</div><div class="v-en">Mother / Mom</div><div class="v-ex">"My mother cooks very well."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('Mother')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">அப்பா</div><div class="v-en">Father / Dad</div><div class="v-ex">"My father works in a factory."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('Father')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">அண்ணன்</div><div class="v-en">Elder Brother</div><div class="v-ex">"My elder brother lives in Chennai."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('Elder Brother')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">அக்கா</div><div class="v-en">Elder Sister</div><div class="v-ex">"My elder sister is a nurse."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('Elder Sister')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">தம்பி</div><div class="v-en">Younger Brother</div><div class="v-ex">"My younger brother is still in school."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('Younger Brother')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">தங்கை</div><div class="v-en">Younger Sister</div><div class="v-ex">"My younger sister loves to draw."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('Younger Sister')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">தாத்தா</div><div class="v-en">Grandfather</div><div class="v-ex">"My grandfather tells great stories."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('Grandfather')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">பாட்டி</div><div class="v-en">Grandmother</div><div class="v-ex">"My grandmother wakes up very early."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('Grandmother')">&#128266;</button></div>
+    </div>
+    <div class="ls-h" style="margin-top:30px">குடும்பத்தை பற்றி பேசுவது</div>
+    <div class="ex fi"><div class="ex-ta">எனது குடும்பத்தில் 5 பேர் இருக்கிறோம் &#8594;</div><div class="ex-en">There are five members in my family.</div><button class="abtn" onclick="speak('There are five members in my family.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-ta">எனது அப்பா ஒரு விவசாயி &#8594;</div><div class="ex-en">My father is a farmer. He works hard every day.</div><button class="abtn" onclick="speak('My father is a farmer. He works hard every day.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+  </div>
+</div></div>
+<div class="tpanel" id="b4"><div class="l-body">
+  <div class="ls"><div class="ls-h">நிறங்கள் — Colours</div>
+    <div class="v-grid">
+      <div class="vc fi"><div class="v-ta">சிவப்பு</div><div class="v-en">Red</div><div class="v-ex">"The roses are red and beautiful."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('Red')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">நீலம்</div><div class="v-en">Blue</div><div class="v-ex">"The sky is blue in the morning."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('Blue')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">பச்சை</div><div class="v-en">Green</div><div class="v-ex">"The trees look green after the rain."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('Green')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">மஞ்சள்</div><div class="v-en">Yellow</div><div class="v-ex">"She wore a yellow saree today."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('Yellow')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">வெள்ளை</div><div class="v-en">White</div><div class="v-ex">"The walls are painted white."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('White')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">கருப்பு</div><div class="v-en">Black</div><div class="v-ex">"He drives a black motorcycle."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('Black')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">ஆரஞ்சு</div><div class="v-en">Orange</div><div class="v-ex">"The sunset looks orange and golden."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('Orange')">&#128266;</button></div>
+      <div class="vc fi"><div class="v-ta">இளஞ்சிவப்பு</div><div class="v-en">Pink</div><div class="v-ex">"The baby wore a pink dress."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:7px" onclick="speak('Pink')">&#128266;</button></div>
+    </div>
+  </div>
+</div></div>
+<div class="tpanel" id="b5"><div class="l-body">
+  <div class="ls"><div class="ls-h">உணவகத்தில் ஆர்டர் செய்வது</div>
+    <div class="ex fi"><div class="ex-ta">ஒரு தேநீர் தாருங்கள் &#8594;</div><div class="ex-en">Please give me one cup of tea.</div><button class="abtn" onclick="speak('Please give me one cup of tea.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-ta">கணக்கு எவ்வளவு? &#8594;</div><div class="ex-en">How much is the bill, please?</div><button class="abtn" onclick="speak('How much is the bill, please?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-ta">இது மிகவும் சுவையாக இருக்கிறது &#8594;</div><div class="ex-en">This is very tasty! I really enjoyed the meal.</div><button class="abtn" onclick="speak('This is very tasty! I really enjoyed the meal.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-ta">இதன் விலை என்ன? &#8594;</div><div class="ex-en">How much does this cost? Is there a discount?</div><button class="abtn" onclick="speak('How much does this cost? Is there a discount?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+  </div>
+</div></div>
+<div class="tpanel" id="b6"><div class="l-body">
+  <div class="ls"><div class="ls-h">வழி கேட்பது &amp; சொல்வது</div>
+    <div class="ex fi"><div class="ex-ta">பஸ் நிறுத்தம் எங்கே இருக்கிறது? &#8594;</div><div class="ex-en">Excuse me, where is the bus stop please?</div><button class="abtn" onclick="speak('Excuse me, where is the bus stop please?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-ta">நேரே போங்கள், பிறகு வலதுபுறம் திரும்புங்கள் &#8594;</div><div class="ex-en">Go straight and then turn right at the signal.</div><button class="abtn" onclick="speak('Go straight and then turn right at the signal.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-ta">இங்கிருந்து கிட்டமா இருக்கா? &#8594;</div><div class="ex-en">Is it far from here, or can I walk there?</div><button class="abtn" onclick="speak('Is it far from here, or can I walk there?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-ta">அருகிலேயே இருக்கிறது &#8594;</div><div class="ex-en">It is very close. You can easily walk there.</div><button class="abtn" onclick="speak('It is very close. You can easily walk there.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+  </div>
+</div></div>
+</div>
+
+<!-- ══ SENTENCE PATTERNS PAGE ══ -->
+<div class="page" id="page-sentence">
+<div class="l-top"><div class="l-top-in">
+  <div class="bcrumb"><span class="bl" onclick="showPage('home')">முகப்பு</span> &rsaquo; <span>வாக்கிய அமைப்பு</span></div>
+  <h2 class="l-h">வாக்கிய அமைப்பு — Sentence Patterns</h2>
+  <div class="l-meta"><span class="l-tag">முக்கிய பாடம்</span><span>8 அமைப்புகள்</span><span>500+ வாக்கியங்கள்</span></div>
+</div></div>
+<div class="ltabs">
+  <button class="ltab on" onclick="showTab(this,'s1')">நிகழ்கால வினை</button>
+  <button class="ltab" onclick="showTab(this,'s2')">இறந்த கால வினை</button>
+  <button class="ltab" onclick="showTab(this,'s3')">எதிர்கால வினை</button>
+  <button class="ltab" onclick="showTab(this,'s4')">நிபந்தனை வாக்கியம்</button>
+  <button class="ltab" onclick="showTab(this,'s5')">கேள்வி வாக்கியம்</button>
+  <button class="ltab" onclick="showTab(this,'s6')">மறுப்பு வாக்கியம்</button>
+  <button class="ltab" onclick="showTab(this,'s7')">ஒப்பிடுதல்</button>
+  <button class="ltab" onclick="showTab(this,'s8')">காரணம் &amp; விளைவு</button>
+</div>
+<div class="tpanel on" id="s1"><div class="l-body">
+  <div class="ls"><div class="ls-h">நிகழ்கால வினை — Simple Present Tense</div>
+    <p style="color:var(--mt);font-size:.86rem;margin-bottom:18px;font-weight:300"><strong style="color:var(--tx)">அமைப்பு:</strong> <span style="color:var(--or)">Subject + Verb(s/es) + Object</span> — தினமும் நடப்பவை, உண்மைகள் சொல்ல இதை பயன்படுத்துகிறோம்.</p>
+    <div class="sp fi"><div class="sp-hd"><div>தமிழ்</div><div>English</div><div>குறிப்பு</div></div>
+      <div class="sp-r"><div class="sp-ta">நான் தினமும் காலையில் தேநீர் குடிக்கிறேன்.</div><div class="sp-en">I drink tea every morning.</div><div class="sp-no">I + drink</div></div>
+      <div class="sp-r"><div class="sp-ta">அவள் ஒரு தனியார் பள்ளியில் படிக்கிறாள்.</div><div class="sp-en">She studies at a private school.</div><div class="sp-no">She + studies (verb+s)</div></div>
+      <div class="sp-r"><div class="sp-ta">எங்கள் கடை 8 மணிக்கு திறக்கிறது.</div><div class="sp-en">Our shop opens at eight in the morning.</div><div class="sp-no">Shop + opens (verb+s)</div></div>
+      <div class="sp-r"><div class="sp-ta">அவர்கள் வெள்ளிக்கிழமை சந்தைக்கு போகிறார்கள்.</div><div class="sp-en">They go to the market on Fridays.</div><div class="sp-no">They + go (no s)</div></div>
+      <div class="sp-r"><div class="sp-ta">நான் அலுவலகத்தில் கணினி வேலை செய்கிறேன்.</div><div class="sp-en">I work on a computer at the office.</div><div class="sp-no">I + work</div></div>
+    </div>
+    <div class="tip"><span style="font-size:1.2rem">&#128161;</span><div class="tip-tx"><strong>நினைவில் வையுங்கள்:</strong> He / She / It உடன் verb-ஐ s அல்லது es சேர்க்கவும். I / We / You / They உடன் verb அப்படியே இருக்கும்.</div></div>
+    <div style="margin-top:22px">
+      <div class="ex fi"><div class="ex-en">I drink tea every morning.</div><button class="abtn" onclick="speak('I drink tea every morning.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+      <div class="ex fi"><div class="ex-en">She studies at a private school.</div><button class="abtn" onclick="speak('She studies at a private school.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+      <div class="ex fi"><div class="ex-en">They go to the market on Fridays.</div><button class="abtn" onclick="speak('They go to the market on Fridays.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    </div>
+  </div>
+</div></div>
+<div class="tpanel" id="s2"><div class="l-body">
+  <div class="ls"><div class="ls-h">இறந்த கால வினை — Simple Past Tense</div>
+    <p style="color:var(--mt);font-size:.86rem;margin-bottom:18px;font-weight:300"><strong style="color:var(--tx)">அமைப்பு:</strong> <span style="color:var(--or)">Subject + Verb (V2 / past form) + Object</span> — முடிந்த செயல்களை சொல்ல.</p>
+    <div class="sp fi"><div class="sp-hd"><div>தமிழ்</div><div>English</div><div>குறிப்பு</div></div>
+      <div class="sp-r"><div class="sp-ta">நான் நேற்று பூங்காவிற்கு சென்றேன்.</div><div class="sp-en">I went to the park yesterday.</div><div class="sp-no">go &#8594; went (V2)</div></div>
+      <div class="sp-r"><div class="sp-ta">அவன் காலையில் சாப்பிட்டான்.</div><div class="sp-en">He ate his food in the morning.</div><div class="sp-no">eat &#8594; ate (V2)</div></div>
+      <div class="sp-r"><div class="sp-ta">எங்கள் வகுப்பு நேற்று ரத்தாயிற்று.</div><div class="sp-en">Our class was cancelled yesterday.</div><div class="sp-no">is &#8594; was</div></div>
+      <div class="sp-r"><div class="sp-ta">அவள் நேற்று இரவு நிறைய படித்தாள்.</div><div class="sp-en">She studied a lot last night.</div><div class="sp-no">study &#8594; studied</div></div>
+      <div class="sp-r"><div class="sp-ta">நான் கடைக்கு சென்றேன், ஆனால் கடை மூடியிருந்தது.</div><div class="sp-en">I went to the shop, but it was closed.</div><div class="sp-no">contrast: but</div></div>
+    </div>
+    <div class="tip"><span style="font-size:1.2rem">&#128161;</span><div class="tip-tx"><strong>2 வார்த்தை மாற்றி பாருங்கள்:</strong> "I went to the <strong style="color:var(--or)">park</strong>" &#8594; "I went to the <strong style="color:var(--gn)">market</strong>" &#8594; "I went to the <strong style="color:var(--nb)">bank</strong>" — ஒரே அமைப்பில் எத்தனை வாக்கியங்கள் வேண்டுமானாலும்!</div></div>
+    <div style="margin-top:22px">
+      <div class="ex fi"><div class="ex-en">I went to the park yesterday.</div><button class="abtn" onclick="speak('I went to the park yesterday.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+      <div class="ex fi"><div class="ex-en">I went to the shop, but it was closed.</div><button class="abtn" onclick="speak('I went to the shop, but it was closed.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    </div>
+    <div class="ls"><div class="ls-h">&#127919; பயிற்சி</div>
+      <p style="color:var(--mt);font-size:.85rem;margin-bottom:12px">"நான் நேற்று ___ க்கு சென்றேன்" — ஆங்கிலத்தில் எழுதுங்கள்.</p>
+      <div class="pr-area"><input type="text" id="pr-s2" placeholder="I went to the ___ yesterday..."/></div>
+      <button class="ck-btn" onclick="showAns('a-s2')">&#10003; விடையை காணுங்கள்</button>
+      <div class="ans" id="a-s2">&#9989; <strong>உதாரணம்:</strong> "I went to the temple yesterday. It was very peaceful."</div>
+    </div>
+  </div>
+</div></div>
+<div class="tpanel" id="s3"><div class="l-body">
+  <div class="ls"><div class="ls-h">எதிர்கால வினை — Simple Future Tense</div>
+    <p style="color:var(--mt);font-size:.86rem;margin-bottom:18px;font-weight:300"><strong style="color:var(--tx)">அமைப்பு:</strong> <span style="color:var(--or)">Subject + will + Verb(V1) + Object</span></p>
+    <div class="sp fi"><div class="sp-hd"><div>தமிழ்</div><div>English</div><div>குறிப்பு</div></div>
+      <div class="sp-r"><div class="sp-ta">நாளை மழை பெய்யும்.</div><div class="sp-en">It will rain tomorrow.</div><div class="sp-no">will + rain</div></div>
+      <div class="sp-r"><div class="sp-ta">நான் நாளை சீக்கிரம் எழுவேன்.</div><div class="sp-en">I will wake up early tomorrow.</div><div class="sp-no">will + wake up</div></div>
+      <div class="sp-r"><div class="sp-ta">அவள் அடுத்த மாதம் திருமணம் செய்துகொள்வாள்.</div><div class="sp-en">She will get married next month.</div><div class="sp-no">will + get</div></div>
+      <div class="sp-r"><div class="sp-ta">நாங்கள் ஞாயிற்றுக்கிழமை ஊருக்கு திரும்புவோம்.</div><div class="sp-en">We will return to our hometown on Sunday.</div><div class="sp-no">will + return</div></div>
+    </div>
+    <div style="margin-top:22px">
+      <div class="ex fi"><div class="ex-en">It will rain tomorrow.</div><button class="abtn" onclick="speak('It will rain tomorrow.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+      <div class="ex fi"><div class="ex-en">I will wake up early tomorrow.</div><button class="abtn" onclick="speak('I will wake up early tomorrow.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    </div>
+  </div>
+</div></div>
+<div class="tpanel" id="s4"><div class="l-body"><div class="ls"><div class="ls-h">நிபந்தனை வாக்கியம் — If Sentences</div>
+  <p style="color:var(--mt);font-size:.86rem;margin-bottom:18px;font-weight:300"><strong style="color:var(--tx)">அமைப்பு:</strong> <span style="color:var(--or)">If + Subject + V1, Subject + will + V1</span></p>
+  <div class="sp fi"><div class="sp-hd"><div>தமிழ்</div><div>English</div><div>குறிப்பு</div></div>
+    <div class="sp-r"><div class="sp-ta">அவன் வந்தால், நான் போவேன்.</div><div class="sp-en">If he comes, I will go.</div><div class="sp-no">If+comes &#8594; will go</div></div>
+    <div class="sp-r"><div class="sp-ta">மழை பெய்தால், வெளியே போக மாட்டேன்.</div><div class="sp-en">If it rains, I will not go outside.</div><div class="sp-no">If+rains &#8594; will not go</div></div>
+    <div class="sp-r"><div class="sp-ta">நீ கஷ்டப்பட்டு படித்தால், வெற்றி பெறுவாய்.</div><div class="sp-en">If you study hard, you will surely succeed.</div><div class="sp-no">real condition</div></div>
+    <div class="sp-r"><div class="sp-ta">நீ சீக்கிரம் வந்தால், நாம் உணவகத்திற்கு போகலாம்.</div><div class="sp-en">If you come early, we can go to the restaurant.</div><div class="sp-no">If+come &#8594; can go</div></div>
+  </div>
+  <div style="margin-top:22px">
+    <div class="ex fi"><div class="ex-en">If he comes, I will go.</div><button class="abtn" onclick="speak('If he comes, I will go.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-en">If you study hard, you will surely succeed.</div><button class="abtn" onclick="speak('If you study hard, you will surely succeed.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+  </div>
+</div></div></div>
+<div class="tpanel" id="s5"><div class="l-body"><div class="ls"><div class="ls-h">கேள்வி வாக்கியம் — Questions</div>
+  <div class="sp fi"><div class="sp-hd"><div>தமிழ்</div><div>English</div><div>குறிப்பு</div></div>
+    <div class="sp-r"><div class="sp-ta">உன் பெயர் என்ன?</div><div class="sp-en">What is your name?</div><div class="sp-no">What + is</div></div>
+    <div class="sp-r"><div class="sp-ta">நீ எங்கே வசிக்கிறாய்?</div><div class="sp-en">Where do you live?</div><div class="sp-no">Where + do</div></div>
+    <div class="sp-r"><div class="sp-ta">இது எவ்வளவு?</div><div class="sp-en">How much does this cost?</div><div class="sp-no">How much</div></div>
+    <div class="sp-r"><div class="sp-ta">நீ எப்போது வருவாய்?</div><div class="sp-en">When will you come?</div><div class="sp-no">When + will</div></div>
+    <div class="sp-r"><div class="sp-ta">உனக்கு ஆங்கிலம் தெரியுமா?</div><div class="sp-en">Do you know English?</div><div class="sp-no">Do + you + know</div></div>
+  </div>
+  <div style="margin-top:22px">
+    <div class="ex fi"><div class="ex-en">What is your name?</div><button class="abtn" onclick="speak('What is your name?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-en">Where do you live?</div><button class="abtn" onclick="speak('Where do you live?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-en">Do you know English?</div><button class="abtn" onclick="speak('Do you know English?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+  </div>
+</div></div></div>
+<div class="tpanel" id="s6"><div class="l-body"><div class="ls"><div class="ls-h">மறுப்பு வாக்கியம் — Negatives</div>
+  <p style="color:var(--mt);font-size:.86rem;margin-bottom:18px;font-weight:300"><strong style="color:var(--tx)">அமைப்பு:</strong> <span style="color:var(--or)">Subject + do not / does not / did not + V1</span></p>
+  <div class="sp fi"><div class="sp-hd"><div>தமிழ்</div><div>English</div><div>குறிப்பு</div></div>
+    <div class="sp-r"><div class="sp-ta">நான் காபி குடிக்க மாட்டேன்.</div><div class="sp-en">I do not drink coffee.</div><div class="sp-no">do not + drink</div></div>
+    <div class="sp-r"><div class="sp-ta">அவன் நேற்று வரவில்லை.</div><div class="sp-en">He did not come yesterday.</div><div class="sp-no">did not + come</div></div>
+    <div class="sp-r"><div class="sp-ta">அவள் இசை பயிலவில்லை.</div><div class="sp-en">She does not learn music.</div><div class="sp-no">does not + learn</div></div>
+    <div class="sp-r"><div class="sp-ta">நாம் அந்த திரைப்படம் பார்க்கவில்லை.</div><div class="sp-en">We did not watch that movie.</div><div class="sp-no">did not + watch</div></div>
+  </div>
+  <div style="margin-top:22px">
+    <div class="ex fi"><div class="ex-en">I do not drink coffee.</div><button class="abtn" onclick="speak('I do not drink coffee.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-en">He did not come yesterday.</div><button class="abtn" onclick="speak('He did not come yesterday.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+  </div>
+</div></div></div>
+<div class="tpanel" id="s7"><div class="l-body"><div class="ls"><div class="ls-h">ஒப்பிடுதல் — Comparison</div>
+  <div class="sp fi"><div class="sp-hd"><div>தமிழ்</div><div>English</div><div>குறிப்பு</div></div>
+    <div class="sp-r"><div class="sp-ta">அவன் என்னை விட உயரமாக இருக்கிறான்.</div><div class="sp-en">He is taller than me.</div><div class="sp-no">taller than</div></div>
+    <div class="sp-r"><div class="sp-ta">இந்த கடை அந்த கடையை விட மலிவானது.</div><div class="sp-en">This shop is cheaper than that one.</div><div class="sp-no">cheaper than</div></div>
+    <div class="sp-r"><div class="sp-ta">ரயில் பஸ்ஸை விட வேகமானது.</div><div class="sp-en">The train is faster than the bus.</div><div class="sp-no">faster than</div></div>
+    <div class="sp-r"><div class="sp-ta">இது நான் படித்த மிகவும் நல்ல புத்தகம்.</div><div class="sp-en">This is the best book I have ever read.</div><div class="sp-no">superlative: best</div></div>
+  </div>
+</div></div></div>
+<div class="tpanel" id="s8"><div class="l-body"><div class="ls"><div class="ls-h">காரணம் &amp; விளைவு — Because &amp; So</div>
+  <div class="sp fi"><div class="sp-hd"><div>தமிழ்</div><div>English</div><div>குறிப்பு</div></div>
+    <div class="sp-r"><div class="sp-ta">மழை பெய்வதால் நான் வெளியே போகவில்லை.</div><div class="sp-en">I did not go outside because it was raining.</div><div class="sp-no">because + reason</div></div>
+    <div class="sp-r"><div class="sp-ta">அவன் உடல் நலமில்லாமல் இருந்தான், எனவே வரவில்லை.</div><div class="sp-en">He was unwell, so he did not come.</div><div class="sp-no">so + result</div></div>
+    <div class="sp-r"><div class="sp-ta">வேலை முடிந்த பிறகு, நாங்கள் வெளியே சாப்பிட்டோம்.</div><div class="sp-en">After finishing work, we ate out together.</div><div class="sp-no">After + V-ing</div></div>
+    <div class="sp-r"><div class="sp-ta">சீக்கிரம் கிளம்பியதால், நாங்கள் சரியான நேரத்தில் சேர்ந்தோம்.</div><div class="sp-en">Because we left early, we arrived on time.</div><div class="sp-no">Because + reason</div></div>
+  </div>
+  <div style="margin-top:22px">
+    <div class="ex fi"><div class="ex-en">I did not go outside because it was raining.</div><button class="abtn" onclick="speak('I did not go outside because it was raining.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-en">He was unwell, so he did not come.</div><button class="abtn" onclick="speak('He was unwell, so he did not come.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>கேளுங்கள்</button></div>
+  </div>
+</div></div></div>
+</div>
+
+<!-- ══ VOCABULARY PAGE ══ -->
+<div class="page" id="page-vocab">
+<div class="l-top"><div class="l-top-in">
+  <div class="bcrumb"><span class="bl" onclick="showPage('home')">முகப்பு</span> › <span>சொல் களஞ்சியம்</span></div>
+  <h2 class="l-h">சொல் களஞ்சியம் — Vocabulary</h2>
+  <div class="l-meta"><span class="l-tag">சொல்வளம்</span><span>தமிழ் சூழல் உதாரணங்கள்</span></div>
+</div></div>
+<div class="ltabs">
+  <button class="ltab on" onclick="showTab(this,'v1')">உணர்வுகள்</button>
+  <button class="ltab" onclick="showTab(this,'v2')">குணங்கள்</button>
+  <button class="ltab" onclick="showTab(this,'v3')">செயல்கள்</button>
+  <button class="ltab" onclick="showTab(this,'v4')">இயற்கை</button>
+  <button class="ltab" onclick="showTab(this,'v5')">கல்வி</button>
+  <button class="ltab" onclick="showTab(this,'v6')">தொழில்கள்</button>
+</div>
+
+<div class="tpanel on" id="v1"><div class="l-body"><div class="ls">
+  <div class="ls-h">உணர்வுகள் — Emotions</div>
+  <div class="v-grid">
+    <div class="vc fi"><div class="v-ta">மகிழ்ச்சி</div><div class="v-en">Happiness / Joy</div><div class="v-alts"><span class="v-alt">happy</span><span class="v-alt">joyful</span><span class="v-alt">glad</span></div><div class="v-ex">"Her smile brought joy to the whole house."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Happiness, joy')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">கவலை</div><div class="v-en">Worry / Anxiety</div><div class="v-alts"><span class="v-alt">worried</span><span class="v-alt">anxious</span><span class="v-alt">tense</span></div><div class="v-ex">"Do not worry, everything will be fine soon."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Worry, anxious')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">கோபம்</div><div class="v-en">Anger</div><div class="v-alts"><span class="v-alt">angry</span><span class="v-alt">furious</span><span class="v-alt">upset</span></div><div class="v-ex">"He was angry but he stayed calm."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Anger, angry')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">பயம்</div><div class="v-en">Fear</div><div class="v-alts"><span class="v-alt">scared</span><span class="v-alt">afraid</span><span class="v-alt">fearful</span></div><div class="v-ex">"Do not be afraid. You can do this."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Fear, afraid')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">நம்பிக்கை</div><div class="v-en">Confidence</div><div class="v-alts"><span class="v-alt">confident</span><span class="v-alt">trust</span><span class="v-alt">faith</span></div><div class="v-ex">"Speak with confidence and people will listen."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Confidence, trust')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">அன்பு</div><div class="v-en">Love / Affection</div><div class="v-alts"><span class="v-alt">love</span><span class="v-alt">care</span><span class="v-alt">affection</span></div><div class="v-ex">"A mother's love is the greatest gift of all."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Love, affection')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">வியப்பு</div><div class="v-en">Surprise</div><div class="v-alts"><span class="v-alt">surprised</span><span class="v-alt">amazed</span><span class="v-alt">shocked</span></div><div class="v-ex">"Everyone was surprised by his kind words."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Surprise, amazed')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">சலிப்பு</div><div class="v-en">Boredom</div><div class="v-alts"><span class="v-alt">bored</span><span class="v-alt">dull</span><span class="v-alt">restless</span></div><div class="v-ex">"I felt bored waiting at the bus stop."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Boredom, bored')">🔊</button></div>
+  </div>
+</div></div></div>
+
+<div class="tpanel" id="v2"><div class="l-body"><div class="ls">
+  <div class="ls-h">குணங்கள் — Character Traits</div>
+  <div class="v-grid">
+    <div class="vc fi"><div class="v-ta">திறமை</div><div class="v-en">Skill / Talent</div><div class="v-alts"><span class="v-alt">skilled</span><span class="v-alt">talented</span><span class="v-alt">capable</span></div><div class="v-ex">"Develop your skill a little every single day."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Skill, talented')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">பொறுமை</div><div class="v-en">Patience</div><div class="v-alts"><span class="v-alt">patient</span><span class="v-alt">calm</span><span class="v-alt">steady</span></div><div class="v-ex">"Patience is the real key to learning English."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Patience, patient')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">விடாமுயற்சி</div><div class="v-en">Perseverance</div><div class="v-alts"><span class="v-alt">persistent</span><span class="v-alt">dedicated</span><span class="v-alt">determined</span></div><div class="v-ex">"Perseverance turns a learner into a speaker."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Perseverance, persistent')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">நேர்மை</div><div class="v-en">Honesty</div><div class="v-alts"><span class="v-alt">honest</span><span class="v-alt">truthful</span><span class="v-alt">sincere</span></div><div class="v-ex">"Always be honest in whatever you choose to do."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Honesty, honest')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">தைரியம்</div><div class="v-en">Courage / Bravery</div><div class="v-alts"><span class="v-alt">brave</span><span class="v-alt">bold</span><span class="v-alt">courageous</span></div><div class="v-ex">"It takes courage to speak in a new language."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Courage, brave')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">அவசரம்</div><div class="v-en">Urgency / Hurry</div><div class="v-alts"><span class="v-alt">hurry</span><span class="v-alt">rush</span><span class="v-alt">urgent</span></div><div class="v-ex">"There is no hurry — finish your tea first."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Hurry, urgent')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">முயற்சி</div><div class="v-en">Effort / Attempt</div><div class="v-alts"><span class="v-alt">effort</span><span class="v-alt">attempt</span><span class="v-alt">try</span></div><div class="v-ex">"Your effort today builds your success tomorrow."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Effort, attempt')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">சந்தர்ப்பம்</div><div class="v-en">Opportunity</div><div class="v-alts"><span class="v-alt">opportunity</span><span class="v-alt">chance</span><span class="v-alt">occasion</span></div><div class="v-ex">"Do not miss this opportunity to learn and grow."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Opportunity, chance')">🔊</button></div>
+  </div>
+</div></div></div>
+
+<div class="tpanel" id="v3"><div class="l-body"><div class="ls">
+  <div class="ls-h">செயல் வார்த்தைகள் — Action Verbs</div>
+  <div class="v-grid">
+    <div class="vc fi"><div class="v-ta">ஓடு</div><div class="v-en">Run</div><div class="v-ex">"He runs five kilometres every morning."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Run')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">பேசு</div><div class="v-en">Speak / Talk</div><div class="v-ex">"She speaks very clearly and with confidence."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Speak, talk')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">படி</div><div class="v-en">Study / Read</div><div class="v-ex">"Study every day and your future will be bright."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Study, read')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">எழுது</div><div class="v-en">Write</div><div class="v-ex">"Write at least one sentence in English daily."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Write')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">கேள்</div><div class="v-en">Listen</div><div class="v-ex">"Listen carefully when someone is speaking to you."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Listen')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">கேட்</div><div class="v-en">Ask</div><div class="v-ex">"Do not hesitate to ask questions in class."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Ask')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">உதவு</div><div class="v-en">Help</div><div class="v-ex">"He always helps his neighbours without being asked."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Help')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">நினை</div><div class="v-en">Think / Remember</div><div class="v-ex">"Think before you speak — words carry great weight."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Think, remember')">🔊</button></div>
+  </div>
+</div></div></div>
+
+<div class="tpanel" id="v4"><div class="l-body"><div class="ls">
+  <div class="ls-h">இயற்கை — Nature</div>
+  <div class="v-grid">
+    <div class="vc fi"><div class="v-ta">மழை</div><div class="v-en">Rain</div><div class="v-alts"><span class="v-alt">rainy</span><span class="v-alt">drizzle</span><span class="v-alt">shower</span></div><div class="v-ex">"The rain cooled down the hot afternoon air."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Rain')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">காற்று</div><div class="v-en">Wind / Breeze</div><div class="v-alts"><span class="v-alt">windy</span><span class="v-alt">breezy</span><span class="v-alt">gust</span></div><div class="v-ex">"A cool breeze was blowing gently from the sea."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Wind, breeze')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">ஆறு</div><div class="v-en">River</div><div class="v-alts"><span class="v-alt">stream</span><span class="v-alt">canal</span><span class="v-alt">waterway</span></div><div class="v-ex">"Our village is right next to a small river."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('River')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">மலை</div><div class="v-en">Mountain / Hill</div><div class="v-alts"><span class="v-alt">hill</span><span class="v-alt">peak</span><span class="v-alt">range</span></div><div class="v-ex">"We could clearly see the hills from our rooftop."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Mountain, hill')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">வானம்</div><div class="v-en">Sky</div><div class="v-alts"><span class="v-alt">clear sky</span><span class="v-alt">cloudy</span><span class="v-alt">overcast</span></div><div class="v-ex">"The sky looks very clear and bright this morning."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Sky')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">சூரியன்</div><div class="v-en">Sun</div><div class="v-alts"><span class="v-alt">sunny</span><span class="v-alt">sunshine</span><span class="v-alt">sunlight</span></div><div class="v-ex">"The sun rises in the east every single morning."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Sun, sunshine')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">கடல்</div><div class="v-en">Sea / Ocean</div><div class="v-alts"><span class="v-alt">ocean</span><span class="v-alt">beach</span><span class="v-alt">shore</span></div><div class="v-ex">"We visited the sea during our summer vacation."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Sea, ocean')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">மரம்</div><div class="v-en">Tree</div><div class="v-alts"><span class="v-alt">plant</span><span class="v-alt">forest</span><span class="v-alt">grove</span></div><div class="v-ex">"The mango tree in our yard gives fruit every year."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Tree, forest')">🔊</button></div>
+  </div>
+</div></div></div>
+
+<div class="tpanel" id="v5"><div class="l-body"><div class="ls">
+  <div class="ls-h">கல்வி சொற்கள் — Education</div>
+  <div class="v-grid">
+    <div class="vc fi"><div class="v-ta">பள்ளி</div><div class="v-en">School</div><div class="v-ex">"My school is ten minutes away from my house."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('School')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">கல்லூரி</div><div class="v-en">College</div><div class="v-ex">"She completed her degree from a college in Trichy."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('College')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">ஆசிரியர்</div><div class="v-en">Teacher</div><div class="v-ex">"My teacher explains every lesson very clearly."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Teacher')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">மாணவர்</div><div class="v-en">Student</div><div class="v-ex">"He is a very hardworking and sincere student."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Student')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">தேர்வு</div><div class="v-en">Exam / Test</div><div class="v-ex">"I have a very important exam coming up on Monday."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Exam, test')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">சான்றிதழ்</div><div class="v-en">Certificate</div><div class="v-ex">"He received his certificate after finishing the course."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Certificate')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">நூலகம்</div><div class="v-en">Library</div><div class="v-ex">"She spends her free time reading in the library."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Library')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">படிப்பு</div><div class="v-en">Education / Study</div><div class="v-ex">"Education will change your life for the better."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Education, study')">🔊</button></div>
+  </div>
+</div></div></div>
+
+<div class="tpanel" id="v6"><div class="l-body"><div class="ls">
+  <div class="ls-h">தொழில்கள் — Occupations</div>
+  <div class="v-grid">
+    <div class="vc fi"><div class="v-ta">மருத்துவர்</div><div class="v-en">Doctor</div><div class="v-ex">"The doctor advised me to rest for two full days."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Doctor')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">பொறியாளர்</div><div class="v-en">Engineer</div><div class="v-ex">"My cousin works as a civil engineer in Chennai."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Engineer')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">விவசாயி</div><div class="v-en">Farmer</div><div class="v-ex">"Farmers wake up before sunrise to tend their fields."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Farmer')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">கடைக்காரர்</div><div class="v-en">Shopkeeper</div><div class="v-ex">"The shopkeeper gave me a good price on everything."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Shopkeeper')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">நர்ஸ்</div><div class="v-en">Nurse</div><div class="v-ex">"The nurse checked my blood pressure and temperature."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Nurse')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">காவலர்</div><div class="v-en">Police Officer</div><div class="v-ex">"The police officer helped us find the correct road."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Police officer')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">ஓட்டுனர்</div><div class="v-en">Driver</div><div class="v-ex">"Our bus driver always drives carefully and safely."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Driver')">🔊</button></div>
+    <div class="vc fi"><div class="v-ta">சமையல்காரர்</div><div class="v-en">Cook / Chef</div><div class="v-ex">"The chef prepared a wonderful meal for the guests."</div><button class="abtn" style="font-size:.7rem;padding:5px 10px;margin-top:8px" onclick="speak('Cook, chef')">🔊</button></div>
+  </div>
+</div></div></div>
+</div>
+
+<!-- ══ SPOKEN ENGLISH PAGE ══ -->
+<div class="page" id="page-spoken">
+<div class="l-top"><div class="l-top-in">
+  <div class="bcrumb"><span class="bl" onclick="showPage('home')">முகப்பு</span> › <span>பேசும் ஆங்கிலம்</span></div>
+  <h2 class="l-h">பேசும் ஆங்கிலம் — Spoken English</h2>
+  <div class="l-meta"><span class="l-tag">நடைமுறை பேச்சு</span><span>உண்மையான உரையாடல்கள்</span></div>
+</div></div>
+<div class="ltabs">
+  <button class="ltab on" onclick="showTab(this,'sp1')">அலுவலகம்</button>
+  <button class="ltab" onclick="showTab(this,'sp2')">தொலைபேசி</button>
+  <button class="ltab" onclick="showTab(this,'sp3')">கடை &amp; சந்தை</button>
+  <button class="ltab" onclick="showTab(this,'sp4')">Interview</button>
+  <button class="ltab" onclick="showTab(this,'sp5')">மன்னிப்பு &amp; நன்றி</button>
+  <button class="ltab" onclick="showTab(this,'sp6')">தொழில் ஆங்கிலம்</button>
+</div>
+
+<div class="tpanel on" id="sp1"><div class="l-body"><div class="ls">
+  <div class="ls-h">அலுவலகத்தில் ஆங்கிலம்</div>
+  <div class="ex fi"><div class="ex-ta">சந்திப்பு ஒத்திவைக்க வேண்டும் →</div><div class="ex-en">Can we reschedule the meeting to tomorrow afternoon?</div><button class="abtn" onclick="speak('Can we reschedule the meeting to tomorrow afternoon?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">Email அனுப்பினேன், கிடைத்ததா? →</div><div class="ex-en">I sent you an email this morning. Did you receive it?</div><button class="abtn" onclick="speak('I sent you an email this morning. Did you receive it?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">இன்று கொஞ்சம் தாமதமாக வருவேன் →</div><div class="ex-en">I will be a little late today. I will reach by ten o'clock.</div><button class="abtn" onclick="speak('I will be a little late today. I will reach by ten.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">Report முடிந்தது, இப்போது அனுப்பட்டுமா? →</div><div class="ex-en">I have completed the report. Shall I send it to you now?</div><button class="abtn" onclick="speak('I have completed the report. Shall I send it to you now?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">உதவி தேவையா? →</div><div class="ex-en">Is there anything I can help you with right now?</div><button class="abtn" onclick="speak('Is there anything I can help you with right now?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">இந்த வேலையை நாளை தரலாமா? →</div><div class="ex-en">Can I submit this work by tomorrow morning instead?</div><button class="abtn" onclick="speak('Can I submit this work by tomorrow morning instead?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="tip"><span style="font-size:1.2rem">💡</span><div class="tip-tx"><strong>நினைவில் வையுங்கள்:</strong> அலுவலகத்தில் "Please", "Could you", "Would you mind" — இந்த வார்த்தைகளை சேர்த்தால் மிகவும் professional ஆக sound ஆகும்.</div></div>
+</div></div></div>
+
+<div class="tpanel" id="sp2"><div class="l-body"><div class="ls">
+  <div class="ls-h">தொலைபேசியில் பேசுவது</div>
+  <div class="ex fi"><div class="ex-ta">யார் பேசுகிறீர்கள்? →</div><div class="ex-en">Hello! Who am I speaking with, please?</div><button class="abtn" onclick="speak('Hello! Who am I speaking with, please?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">இப்போது பேச முடியுமா? →</div><div class="ex-en">Is this a good time to talk, or shall I call back?</div><button class="abtn" onclick="speak('Is this a good time to talk, or shall I call back?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">சிறிது நேரம் hold-ல் இருங்கள் →</div><div class="ex-en">Please hold on for a moment. I will be right back.</div><button class="abtn" onclick="speak('Please hold on for a moment. I will be right back.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">சரியாக கேட்கவில்லை →</div><div class="ex-en">I am sorry, I could not hear you. Could you say that again slowly?</div><button class="abtn" onclick="speak('I am sorry, I could not hear you. Could you say that again slowly?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">பிறகு திரும்ப call செய்யட்டுமா? →</div><div class="ex-en">He is not available right now. Can he call you back later?</div><button class="abtn" onclick="speak('He is not available right now. Can he call you back later?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+</div></div></div>
+
+<div class="tpanel" id="sp3"><div class="l-body"><div class="ls">
+  <div class="ls-h">கடை &amp; சந்தையில் ஆங்கிலம்</div>
+  <div class="ex fi"><div class="ex-ta">இதன் விலை என்ன? →</div><div class="ex-en">How much does this cost? Is there any discount today?</div><button class="abtn" onclick="speak('How much does this cost? Is there any discount today?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">வேறு சைஸ் இருக்கிறதா? →</div><div class="ex-en">Do you have this in a different size or colour?</div><button class="abtn" onclick="speak('Do you have this in a different size or colour?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">இதை திரும்ப தர முடியுமா? →</div><div class="ex-en">Can I return this item if it does not fit me properly?</div><button class="abtn" onclick="speak('Can I return this item if it does not fit me properly?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">கொஞ்சம் விலை குறைக்க முடியுமா? →</div><div class="ex-en">This is a little expensive. Can you reduce the price a bit?</div><button class="abtn" onclick="speak('This is a little expensive. Can you reduce the price a bit?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">பில் தாருங்கள் →</div><div class="ex-en">Could you please give me the bill and a carry bag?</div><button class="abtn" onclick="speak('Could you please give me the bill and a carry bag?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+</div></div></div>
+
+<div class="tpanel" id="sp4"><div class="l-body"><div class="ls">
+  <div class="ls-h">Interview-ல் பேசுவது</div>
+  <div class="ex fi"><div class="ex-ta">உங்களை பற்றி சொல்லுங்கள் →</div><div class="ex-en">My name is Suresh. I completed my degree in Commerce from Madurai University. I have two years of experience in accounts and I am eager to grow further.</div><button class="abtn" onclick="speak('My name is Suresh. I completed my degree in Commerce from Madurai University. I have two years of experience in accounts.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">என் பலம் என்ன? →</div><div class="ex-en">My greatest strength is that I work well under pressure and I always complete my tasks on time.</div><button class="abtn" onclick="speak('My greatest strength is that I work well under pressure and I always complete my tasks on time.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">ஏன் இந்த நிறுவனம்? →</div><div class="ex-en">I chose this company because of its excellent reputation and the opportunities it offers for learning and growth.</div><button class="abtn" onclick="speak('I chose this company because of its excellent reputation and the opportunities it offers for learning and growth.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">5 வருட திட்டம் என்ன? →</div><div class="ex-en">In five years, I see myself in a senior role where I can contribute meaningfully to the team and the company.</div><button class="abtn" onclick="speak('In five years, I see myself in a senior role where I can contribute meaningfully to the team and the company.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="tip"><span style="font-size:1.2rem">💡</span><div class="tip-tx"><strong>Interview குறிப்பு:</strong> பதில் சொல்வதற்கு முன்பு "That's a great question" அல்லது "Let me think about that for a moment" என்று சொல்லலாம் — இது நேரம் எடுத்துக்கொள்ள உதவும்.</div></div>
+</div></div></div>
+
+<div class="tpanel" id="sp5"><div class="l-body"><div class="ls">
+  <div class="ls-h">மன்னிப்பு &amp; நன்றி சொல்வது</div>
+  <div class="ex fi"><div class="ex-ta">மன்னிக்கவும், தாமதமாக வந்தேன் →</div><div class="ex-en">I am so sorry for being late. The traffic was very heavy today.</div><button class="abtn" onclick="speak('I am so sorry for being late. The traffic was very heavy today.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">உதவியதற்கு மிக்க நன்றி →</div><div class="ex-en">Thank you so much for your help. I truly appreciate it.</div><button class="abtn" onclick="speak('Thank you so much for your help. I truly appreciate it.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">தேவைப்பட்டால் கேளுங்கள் →</div><div class="ex-en">Please do not hesitate to ask if you need any help from me.</div><button class="abtn" onclick="speak('Please do not hesitate to ask if you need any help from me.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">மன்னிக்கவும், சரியாக புரியவில்லை →</div><div class="ex-en">I am sorry, I did not quite understand. Could you explain that again please?</div><button class="abtn" onclick="speak('I am sorry, I did not quite understand. Could you explain that again please?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+</div></div></div>
+
+<div class="tpanel" id="sp6"><div class="l-body"><div class="ls">
+  <div class="ls-h">Email எழுதுவது — Writing Emails</div>
+  <p style="color:var(--mt);font-size:.87rem;margin-bottom:18px;font-weight:300">Email-ல் பயன்படும் முக்கியமான வாக்கியங்கள் — ஆரம்பம் முதல் முடிவு வரை.</p>
+  <div class="ex fi"><div class="ex-ta">Email ஆரம்பிக்க →</div><div class="ex-en">Dear Sir / Madam, I hope this email finds you in good health.</div><button class="abtn" onclick="speak('Dear Sir, I hope this email finds you in good health.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">விஷயம் சொல்ல →</div><div class="ex-en">I am writing to inform you about the change in meeting schedule.</div><button class="abtn" onclick="speak('I am writing to inform you about the change in meeting schedule.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">கோரிக்கை வைக்க →</div><div class="ex-en">Could you please send me the updated document by Friday?</div><button class="abtn" onclick="speak('Could you please send me the updated document by Friday?')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  <div class="ex fi"><div class="ex-ta">Email முடிக்க →</div><div class="ex-en">Thank you for your time. Looking forward to hearing from you. Regards, Kavitha.</div><button class="abtn" onclick="speak('Thank you for your time. Looking forward to hearing from you.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+</div></div></div>
+</div>
+
+<!-- ══ GRAMMAR PAGE ══ -->
+<div class="page" id="page-grammar">
+<div class="l-top"><div class="l-top-in">
+  <div class="bcrumb"><span class="bl" onclick="showPage('home')">முகப்பு</span> › <span>இலக்கணம்</span></div>
+  <h2 class="l-h">இலக்கணம் — Grammar (தமிழில்)</h2>
+  <div class="l-meta"><span class="l-tag">தமிழ் விளக்கம்</span><span>எளிமையான கற்பித்தல்</span></div>
+</div></div>
+<div class="ltabs">
+  <button class="ltab on" onclick="showTab(this,'g1')">Article (a, an, the)</button>
+  <button class="ltab" onclick="showTab(this,'g2')">Prepositions</button>
+  <button class="ltab" onclick="showTab(this,'g3')">Adjectives</button>
+  <button class="ltab" onclick="showTab(this,'g4')">Pronouns</button>
+  <button class="ltab" onclick="showTab(this,'g5')">Tenses சுருக்கம்</button>
+  <button class="ltab" onclick="showTab(this,'g6')">பொதுவான தவறுகள்</button>
+</div>
+
+<div class="tpanel on" id="g1"><div class="l-body"><div class="ls">
+  <div class="ls-h">Article: a, an, the — எப்போது பயன்படுத்துவது?</div>
+  <div class="tip"><span style="font-size:1.2rem">📌</span><div class="tip-tx">
+    <strong>"a"</strong> — consonant ஒலியில் தொடங்கும் சொல்லுக்கு முன்பு, முதல் முறை குறிப்பிடும்போது.<br/>
+    <strong>"an"</strong> — vowel ஒலியில் (a, e, i, o, u) தொடங்கும் சொல்லுக்கு முன்பு.<br/>
+    <strong>"the"</strong> — குறிப்பிட்ட ஒரு பொருளை சொல்லும்போது; உலகில் ஒன்றே ஒன்று உள்ளதை குறிக்க.
+  </div></div>
+  <div class="sp fi"><div class="sp-hd"><div>தமிழ்</div><div>English</div><div>விளக்கம்</div></div>
+    <div class="sp-r"><div class="sp-ta">ஒரு பூனை வீட்டில் நுழைந்தது.</div><div class="sp-en">A cat entered the house.</div><div class="sp-no">a (first mention)</div></div>
+    <div class="sp-r"><div class="sp-ta">அந்த பூனை வேகமாக ஓடியது.</div><div class="sp-en">The cat ran away very fast.</div><div class="sp-no">the (specific cat)</div></div>
+    <div class="sp-r"><div class="sp-ta">அவன் ஒரு ஆசிரியர்.</div><div class="sp-en">He is a teacher.</div><div class="sp-no">a (consonant t)</div></div>
+    <div class="sp-r"><div class="sp-ta">அவள் ஒரு IAS அதிகாரி.</div><div class="sp-en">She is an IAS officer.</div><div class="sp-no">an (vowel sound I)</div></div>
+    <div class="sp-r"><div class="sp-ta">சூரியன் கிழக்கே உதிக்கிறது.</div><div class="sp-en">The sun rises in the east.</div><div class="sp-no">the (unique in world)</div></div>
+    <div class="sp-r"><div class="sp-ta">நான் ஒரு ஆப்பிள் சாப்பிட்டேன்.</div><div class="sp-en">I ate an apple in the afternoon.</div><div class="sp-no">an (vowel sound a)</div></div>
+  </div>
+  <div style="margin-top:22px">
+    <div class="ex fi"><div class="ex-en">She is an IAS officer.</div><button class="abtn" onclick="speak('She is an IAS officer.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+    <div class="ex fi"><div class="ex-en">The sun rises in the east.</div><button class="abtn" onclick="speak('The sun rises in the east.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  </div>
+</div></div></div>
+
+<div class="tpanel" id="g2"><div class="l-body"><div class="ls">
+  <div class="ls-h">Prepositions — இட உறவுகள்</div>
+  <div class="tip"><span style="font-size:1.2rem">📌</span><div class="tip-tx">Prepositions இரண்டு வார்த்தைகளுக்கு இடையே உள்ள தொடர்பை விளக்கும். இடம், நேரம், திசை — இவற்றை குறிக்கும்.</div></div>
+  <div class="sp fi"><div class="sp-hd"><div>தமிழ்</div><div>English</div><div>Preposition</div></div>
+    <div class="sp-r"><div class="sp-ta">புத்தகம் மேஜையில் இருக்கிறது.</div><div class="sp-en">The book is on the table.</div><div class="sp-no">on = மேல்</div></div>
+    <div class="sp-r"><div class="sp-ta">பூனை நாற்காலியின் கீழே இருக்கிறது.</div><div class="sp-en">The cat is under the chair.</div><div class="sp-no">under = கீழே</div></div>
+    <div class="sp-r"><div class="sp-ta">நான் காலையில் 7 மணிக்கு எழுகிறேன்.</div><div class="sp-en">I wake up at seven in the morning.</div><div class="sp-no">at = time; in = period</div></div>
+    <div class="sp-r"><div class="sp-ta">கடை வீட்டிற்கு அருகில் இருக்கிறது.</div><div class="sp-en">The shop is near my house.</div><div class="sp-no">near = அருகில்</div></div>
+    <div class="sp-r"><div class="sp-ta">அவன் சென்னையிலிருந்து வந்தான்.</div><div class="sp-en">He came from Chennai yesterday.</div><div class="sp-no">from = இருந்து</div></div>
+    <div class="sp-r"><div class="sp-ta">அவர்கள் பள்ளிக்கு நடந்து சென்றார்கள்.</div><div class="sp-en">They walked to the school together.</div><div class="sp-no">to = நோக்கி</div></div>
+  </div>
+</div></div></div>
+
+<div class="tpanel" id="g3"><div class="l-body"><div class="ls">
+  <div class="ls-h">Adjectives — பண்புச் சொற்கள்</div>
+  <p style="color:var(--mt);font-size:.86rem;margin-bottom:18px;font-weight:300"><strong style="color:var(--tx)">அமைப்பு:</strong> <span style="color:var(--or)">Adjective + Noun (அல்லது) Subject + is/are + Adjective</span> — பெயர்ச்சொல்லை விளக்கும்.</p>
+  <div class="sp fi"><div class="sp-hd"><div>தமிழ்</div><div>English</div><div>Adjective</div></div>
+    <div class="sp-r"><div class="sp-ta">இது ஒரு பெரிய வீடு.</div><div class="sp-en">This is a big house.</div><div class="sp-no">big = பெரிய</div></div>
+    <div class="sp-r"><div class="sp-ta">அவள் மிகவும் புத்திசாலி.</div><div class="sp-en">She is very intelligent and hardworking.</div><div class="sp-no">intelligent = புத்திசாலி</div></div>
+    <div class="sp-r"><div class="sp-ta">இன்று வானிலை மிகவும் குளிராக இருக்கிறது.</div><div class="sp-en">The weather is very cold and windy today.</div><div class="sp-no">cold, windy</div></div>
+    <div class="sp-r"><div class="sp-ta">அவரது குரல் மிகவும் இனிமையாக இருக்கிறது.</div><div class="sp-en">His voice is very sweet and pleasant to hear.</div><div class="sp-no">sweet, pleasant</div></div>
+    <div class="sp-r"><div class="sp-ta">அது ஒரு பழைய மரம்.</div><div class="sp-en">That is a very old and tall tree.</div><div class="sp-no">old, tall</div></div>
+  </div>
+  <div style="margin-top:22px">
+    <div class="ex fi"><div class="ex-en">She is very intelligent and hardworking.</div><button class="abtn" onclick="speak('She is very intelligent and hardworking.')"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg> கேளுங்கள்</button></div>
+  </div>
+</div></div></div>
+
+<div class="tpanel" id="g4"><div class="l-body"><div class="ls">
+  <div class="ls-h">Pronouns — பிரதிப் பெயர்கள்</div>
+  <div class="v-grid">
+    <div class="vc fi"><div class="v-ta">நான்</div><div class="v-en">I / Me / My</div><div class="v-ex">"I am learning English every single day."</div></div>
+    <div class="vc fi"><div class="v-ta">நீ / நீங்கள்</div><div class="v-en">You / Your</div><div class="v-ex">"You speak very clearly. Keep it up always."</div></div>
+    <div class="vc fi"><div class="v-ta">அவன்</div><div class="v-en">He / Him / His</div><div class="v-ex">"He studies at a college in Trichy."</div></div>
+    <div class="vc fi"><div class="v-ta">அவள்</div><div class="v-en">She / Her / Hers</div><div class="v-ex">"She teaches at our village primary school."</div></div>
+    <div class="vc fi"><div class="v-ta">அது</div><div class="v-en">It / Its</div><div class="v-ex">"It is a very important lesson for all of us."</div></div>
+    <div class="vc fi"><div class="v-ta">நாங்கள்</div><div class="v-en">We / Us / Our</div><div class="v-ex">"We will study together every weekend."</div></div>
+    <div class="vc fi"><div class="v-ta">அவர்கள்</div><div class="v-en">They / Them / Their</div><div class="v-ex">"They arrived early for the family function."</div></div>
+    <div class="vc fi"><div class="v-ta">இது / அது</div><div class="v-en">This / That</div><div class="v-ex">"This is my book. That is your pen."</div></div>
+  </div>
+</div></div></div>
+
+<div class="tpanel" id="g5"><div class="l-body"><div class="ls">
+  <div class="ls-h">Tenses — எளிய சுருக்கம்</div>
+  <div class="sp fi"><div class="sp-hd"><div>Tense</div><div>அமைப்பு</div><div>உதாரணம்</div></div>
+    <div class="sp-r"><div class="sp-ta" style="font-weight:600">Simple Present</div><div class="sp-en">S + V1 (s/es)</div><div class="sp-no">I eat rice. / She eats rice.</div></div>
+    <div class="sp-r"><div class="sp-ta" style="font-weight:600">Present Continuous</div><div class="sp-en">S + is/am/are + V-ing</div><div class="sp-no">He is eating right now.</div></div>
+    <div class="sp-r"><div class="sp-ta" style="font-weight:600">Simple Past</div><div class="sp-en">S + V2</div><div class="sp-no">I ate rice yesterday.</div></div>
+    <div class="sp-r"><div class="sp-ta" style="font-weight:600">Past Continuous</div><div class="sp-en">S + was/were + V-ing</div><div class="sp-no">She was studying at night.</div></div>
+    <div class="sp-r"><div class="sp-ta" style="font-weight:600">Simple Future</div><div class="sp-en">S + will + V1</div><div class="sp-no">I will eat tomorrow morning.</div></div>
+    <div class="sp-r"><div class="sp-ta" style="font-weight:600">Present Perfect</div><div class="sp-en">S + have/has + V3</div><div class="sp-no">I have already eaten.</div></div>
+  </div>
+  <div class="tip"><span style="font-size:1.2rem">💡</span><div class="tip-tx"><strong>முக்கிய யோசனை:</strong> Tense என்பது நேரத்தை காட்டுகிறது — நடந்தது, நடக்கிறது, நடக்கும். ஒவ்வொரு tense-ம் ஒரு குறிப்பிட்ட அமைப்பை பின்பற்றும். மனப்பாடம் செய்யாமல், <strong style="color:var(--or)">புரிந்துகொண்டு</strong> பயன்படுத்துங்கள்.</div></div>
+</div></div></div>
+
+<div class="tpanel" id="g6"><div class="l-body"><div class="ls">
+  <div class="ls-h">பொதுவான தவறுகள் — Common Mistakes</div>
+  <p style="color:var(--mt);font-size:.87rem;margin-bottom:18px;font-weight:300">தமிழர்கள் அதிகமாக செய்யும் ஆங்கில தவறுகள் — சரியான வழியுடன்.</p>
+  <div class="sp fi"><div class="sp-hd"><div>தவறான வழி ❌</div><div>சரியான வழி ✅</div><div>காரணம்</div></div>
+    <div class="sp-r"><div class="sp-ta" style="color:#FF6B6B">She don't know.</div><div class="sp-en">She does not know.</div><div class="sp-no">She + does not</div></div>
+    <div class="sp-r"><div class="sp-ta" style="color:#FF6B6B">I am having a car.</div><div class="sp-en">I have a car.</div><div class="sp-no">possession — no "am having"</div></div>
+    <div class="sp-r"><div class="sp-ta" style="color:#FF6B6B">He went to market.</div><div class="sp-en">He went to the market.</div><div class="sp-no">"the" தேவை</div></div>
+    <div class="sp-r"><div class="sp-ta" style="color:#FF6B6B">I am knowing him.</div><div class="sp-en">I know him very well.</div><div class="sp-no">know = state, not action</div></div>
+    <div class="sp-r"><div class="sp-ta" style="color:#FF6B6B">Yesterday I go to school.</div><div class="sp-en">Yesterday I went to school.</div><div class="sp-no">past tense: went</div></div>
+    <div class="sp-r"><div class="sp-ta" style="color:#FF6B6B">He is more taller than me.</div><div class="sp-en">He is taller than me.</div><div class="sp-no">no "more" with -er</div></div>
+  </div>
+  <div class="tip"><span style="font-size:1.2rem">💡</span><div class="tip-tx"><strong>நினைவில் வையுங்கள்:</strong> தவறு செய்வது கற்றலின் ஒரு பகுதி. தவறு செய்தால் சரிசெய்துகொள்ளுங்கள் — நிறுத்தாதீர்கள்! "Mistakes are proof that you are trying."</div></div>
+</div></div></div>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  var pg = document.getElementById('page-' + id);
+  if(pg){ pg.classList.add('active'); }
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.querySelectorAll('.nav-links button').forEach(function(b){ b.classList.remove('cur'); });
+  var nb = document.getElementById('n-' + id);
+  if(nb){ nb.classList.add('cur'); }
+  document.getElementById('prog').style.width = '0';
+  setTimeout(function(){ triggerFadeIn(pg); }, 80);
+}
+
+function showTab(btn, panelId) {
+  var parent = btn.closest('.page');
+  parent.querySelectorAll('.ltab').forEach(function(t){ t.classList.remove('on'); });
+  btn.classList.add('on');
+  parent.querySelectorAll('.tpanel').forEach(function(p){ p.classList.remove('on'); });
+  var panel = document.getElementById(panelId);
+  if(panel){
+    panel.classList.add('on');
+    setTimeout(function(){ triggerFadeIn(panel); }, 60);
+  }
+}
+
+function toggleMob(){
+  document.getElementById('mobnav').classList.toggle('open');
+}
+function closeMob(){
+  document.getElementById('mobnav').classList.remove('open');
+}
+
+function speak(text) {
+  if(!window.speechSynthesis){ return; }
+  window.speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-IN'; u.rate = 0.88; u.pitch = 1.0;
+  window.speechSynthesis.speak(u);
+}
+
+function showAns(id) {
+  var el = document.getElementById(id);
+  if(el){ el.classList.toggle('show'); }
+}
+
+function triggerFadeIn(container) {
+  if(!container) return;
+  container.querySelectorAll('.fi').forEach(function(el){
+    el.classList.remove('vis');
+    setTimeout(function(){ el.classList.add('vis'); }, 40);
+  });
+}
+
+window.addEventListener('scroll', function(){
+  var st = window.scrollY;
+  var dh = document.documentElement.scrollHeight - window.innerHeight;
+  var pct = dh > 0 ? (st / dh) * 100 : 0;
+  document.getElementById('prog').style.width = pct + '%';
+  var nav = document.getElementById('nav');
+  nav.style.boxShadow = st > 40 ? '0 4px 30px rgba(0,0,0,0.7)' : 'none';
+});
+
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); } });
+}, {threshold: 0.07});
+
+function observeAll(){
+  document.querySelectorAll('.fi:not(.vis)').forEach(function(el){ obs.observe(el); });
+}
+observeAll();
+setTimeout(function(){
+  document.querySelectorAll('.page.active .fi').forEach(function(el){ el.classList.add('vis'); });
+}, 120);
+</script>
+</body>
+</html>
